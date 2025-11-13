@@ -6,20 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Sistema simple y accesible para gestionar turnos en pequeños centros médicos y consultorios con administración parcial."
+    content="Plataforma para la gestión de turnos en centros médicos y consultorios. Agenda unificada, múltiples sedes y soporte para equipos administrativos."
   />
   <link rel="stylesheet" href="./site.css" />
 </head>
 <body>
-  <!-- HEADER -->
-<div class="brand">
-  <img src="./logo eg.png" alt="EG Health Solutions" class="brand-logo-img" />
-  <div class="brand-text">
-    <span class="brand-name">EG Health Solutions</span>
-    <span class="brand-tagline">Gestión de turnos para centros médicos</span>
-  </div>
-</div>
-
+  <!-- ENCABEZADO -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="./logo eg.png" alt="EG Health Solutions" class="brand-logo-img" />
+        <div class="brand-text">
+          <span class="brand-name">EG Health Solutions</span>
+          <span class="brand-tagline">Gestión de turnos para centros médicos</span>
+        </div>
+      </div>
 
       <nav class="nav">
         <a href="#presentacion">Inicio</a>
@@ -28,7 +29,6 @@
         <a href="#empezar">Cómo empezar</a>
       </nav>
 
-      <!-- Botón que lleva al sistema real -->
       <a
         class="btn secondary small"
         href="https://eghealthsolutions.vercel.app/"
@@ -45,34 +45,40 @@
     <section id="presentacion" class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <p class="pill">Pensado para centros médicos y consultorios que quieren ordenar la agenda</p>
-          <h1>Un solo panel para todos tus turnos,<br />en todos tus consultorios.</h1>
+          <p class="pill">
+            Plataforma de gestión de turnos para centros médicos y consultorios
+          </p>
+          <h1>
+            Un panel único para organizar turnos<br />
+            de profesionales y centros médicos.
+          </h1>
           <p class="hero-sub">
-            EG Health Solutions es un sistema de gestión de turnos diseñado para centros chicos y
-            profesionales que trabajan en varios lugares. Vos y tu asistente tienen una agenda unificada,
-            clara y liviana, sin depender de planillas ni chats interminables.
+            EG Health Solutions es una solución desarrollada para centros médicos,
+            consultorios y profesionales que trabajan en más de una sede. Permite
+            centralizar la agenda de turnos, ordenar el trabajo del equipo administrativo
+            y mejorar la experiencia de pacientes y profesionales.
           </p>
 
           <div class="hero-ctas">
             <a
-              href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20eghealthsolutions"
-              class="btn primary"
+              href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
+              class="btn btn-whatsapp"
               target="_blank"
               rel="noopener"
             >
               Escribir por WhatsApp
             </a>
-            <a href="#vistas" class="btn ghost">Ver cómo se ve el sistema</a>
+            <a href="#vistas" class="btn ghost">Ver el funcionamiento del sistema</a>
           </div>
 
           <div class="hero-kpi">
             <div>
-              <span class="kpi-label">Ideal para</span>
-              <span class="kpi-value">1 a 10 profesionales</span>
+              <span class="kpi-label">Ámbito de uso</span>
+              <span class="kpi-value">Centros médicos y consultorios ambulatorios</span>
             </div>
             <div>
-              <span class="kpi-label">Administración</span>
-              <span class="kpi-value">Asistentes a tiempo parcial</span>
+              <span class="kpi-label">Escala recomendada</span>
+              <span class="kpi-value">Entre 1 y 10 profesionales</span>
             </div>
           </div>
         </div>
@@ -91,19 +97,19 @@
                 <h4>Por llegar</h4>
                 <ul>
                   <li><strong>09:00</strong> Pérez, Ana — Pediatría</li>
-                  <li><strong>09:30</strong> López, Martín — Clínica</li>
+                  <li><strong>09:30</strong> López, Martín — Clínica Médica</li>
                 </ul>
               </div>
               <div class="col">
                 <h4>En espera</h4>
                 <ul>
-                  <li><strong>10:00</strong> García, Laura — Odonto</li>
+                  <li><strong>10:00</strong> García, Laura — Odontología</li>
                 </ul>
               </div>
               <div class="col">
                 <h4>En atención</h4>
                 <ul>
-                  <li><strong>10:30</strong> Ramírez, Pablo</li>
+                  <li><strong>10:30</strong> Ramírez, Pablo — Cardiología</li>
                 </ul>
               </div>
               <div class="col">
@@ -116,66 +122,70 @@
             </div>
             <div class="panel-footer">
               <span class="chip mini">
-                <span>Horas libres hoy</span>
-                <span class="v">1h 40m</span>
+                <span>Horas disponibles hoy</span>
+                <span class="v">1 h 40 min</span>
               </span>
-              <span class="muted">Vista inspirada en el panel real del sistema.</span>
+              <span class="muted">Ejemplo de visualización de agenda del sistema.</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. VISTAS DEL SISTEMA (ESPACIO PARA 2 GIF) -->
+    <!-- 2. EL SISTEMA / VISTAS (ESPACIO PARA 2 GIF) -->
     <section id="vistas" class="section alt">
       <div class="container">
-        <h2>El sistema en acción</h2>
+        <h2>El sistema en la práctica</h2>
         <p class="section-lead">
-          EG Health Solutions organiza la jornada en columnas claras para recepción y profesionales:
-          turnos por llegar, en espera, en atención y atendidos; además de la ficha del paciente.
+          La plataforma organiza la jornada en columnas claras para el equipo de
+          recepción y los profesionales, y permite acceder rápidamente a la ficha del
+          paciente y a la información relevante del turno.
         </p>
 
         <div class="grid cards-2 demo-grid">
           <!-- GIF 1 -->
           <article class="card">
-            <h3>Vista general de turnos</h3>
+            <h3>Panel de turnos por estado</h3>
             <p class="muted">
-              Tablero diario con turnos agrupados por estado. Ideal para recepción: se ve quién viene,
-              quién está esperando y quién ya está en consultorio.
+              Visualización de turnos del día agrupados por estado:
+              <strong>por llegar</strong>, <strong>en espera</strong>,
+              <strong>en atención</strong> y <strong>atendidos</strong>.
+              Facilita el trabajo de recepción y permite identificar rápidamente
+              demoras y espacios disponibles.
             </p>
-            <!-- Espacio listo para GIF 1 -->
-            <!-- Cuando lo tengas, reemplazá el div por: <img src="./NOMBRE-GIF-1.gif" alt="Vista general de turnos" class="demo-gif" /> -->
-            <div class="demo-gif placeholder">
-              Acá va el GIF 1<br />
-              (vista general del tablero de turnos)
+            <!-- Reemplazar este contenedor por <img src="./NOMBRE-GIF-1.gif" ...> cuando el GIF esté listo -->
+            <div class="demo-gif">
+              Aquí se mostrará el GIF 1<br />
+              (panel general de turnos del día).
             </div>
           </article>
 
           <!-- GIF 2 -->
           <article class="card">
-            <h3>Alta y gestión de turnos</h3>
+            <h3>Asignación y seguimiento de turnos</h3>
             <p class="muted">
-              Alta rápida de pacientes, definición de profesional, centro y horario. Cambiar el estado
-              del turno es tan simple como un clic.
+              Alta de turnos, selección de profesional, centro médico y horario,
+              con actualización de estado en un solo clic. Permite llevar un control
+              ordenado de la atención y del flujo de pacientes.
             </p>
-            <!-- Espacio listo para GIF 2 -->
-            <!-- Cuando lo tengas, reemplazá el div por: <img src="./NOMBRE-GIF-2.gif" alt="Alta de turnos" class="demo-gif" /> -->
-            <div class="demo-gif placeholder">
-              Acá va el GIF 2<br />
-              (cómo se carga un turno y se cambia de estado)
+            <!-- Reemplazar este contenedor por <img src="./NOMBRE-GIF-2.gif" ...> cuando el GIF esté listo -->
+            <div class="demo-gif">
+              Aquí se mostrará el GIF 2<br />
+              (carga de turnos y cambio de estado).
             </div>
           </article>
         </div>
       </div>
     </section>
 
-       <!-- 3. PLANES -->
+    <!-- 3. PLANES -->
     <section id="planes" class="section">
       <div class="container">
-        <h2>Planes simples para crecer sin sorpresas.</h2>
+        <h2>Planes y condiciones comerciales</h2>
         <p class="section-lead">
-          Empezás con pocos profesionales y podés ir sumando centros y asistentes a medida que el trabajo
-          aumenta. Pagás un valor base y luego un adicional claro por cada sede o asistente extra.
+          Los planes están diseñados para acompañar el tamaño real del centro
+          médico y su crecimiento. Cada plan contempla un importe base y
+          adicionales claros por centros médicos y asistentes administrativos.
         </p>
 
         <div class="grid cards-3 pricing">
@@ -186,51 +196,51 @@
             <ul class="features">
               <li>Hasta <strong>1 profesional</strong></li>
               <li><strong>1 asistente administrativo incluido</strong></li>
-              <li>Centros médicos: 1 incluido</li>
+              <li>1 centro médico incluido</li>
               <li>Agenda unificada por estados de turno</li>
             </ul>
             <p class="hint">
-              Centro pequeño o profesional independiente que quiere ordenar su agenda en una sola pantalla.
+              Recomendado para consultorios individuales o pequeños centros con un único profesional.
             </p>
             <p class="muted">
-              Centro adicional: <strong>$7.000</strong> / mes<br />
+              Centro médico adicional: <strong>$7.000</strong> / mes<br />
               Asistente administrativo adicional: <strong>$1.500</strong> / mes
             </p>
             <a
-              href="https://wa.me/541138492392?text=Hola%20👋%20Quiero%20averiguar%20más%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions%20💜"
-              class="btn primary full"
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
               target="_blank"
               rel="noopener"
             >
-              Consultar por este plan
+              Consultar por el Plan Consultorio
             </a>
           </article>
 
           <!-- Plan 2 -->
           <article class="card destacado">
-            <div class="badge">Más elegido</div>
+            <div class="badge">Plan recomendado</div>
             <h3>Plan Equipo</h3>
             <p class="price">$70.000 / mes</p>
             <ul class="features">
               <li>Hasta <strong>4 profesionales</strong></li>
               <li><strong>1 asistente administrativo incluido</strong></li>
-              <li>Multiples centros médicos configurables</li>
-              <li>Perfiles diferenciados para recepción y médicos</li>
+              <li>Configuración de múltiples centros médicos</li>
+              <li>Perfiles diferenciados para recepción y profesionales</li>
             </ul>
             <p class="hint">
-              Para centros que manejan varios consultorios y necesitan ordenar turnos de distintos lugares.
+              Adecuado para centros con varios consultorios y un equipo de profesionales que comparte agenda.
             </p>
             <p class="muted">
-              Centro adicional: <strong>$5.000</strong> / mes<br />
+              Centro médico adicional: <strong>$5.000</strong> / mes<br />
               Asistente administrativo adicional: <strong>$1.500</strong> / mes
             </p>
             <a
-              href="https://wa.me/541138492392?text=Hola%20👋%20Quiero%20averiguar%20más%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions%20💼"
-              class="btn primary full"
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
               target="_blank"
               rel="noopener"
             >
-              Consultar por este plan
+              Consultar por el Plan Equipo
             </a>
           </article>
 
@@ -241,74 +251,77 @@
             <ul class="features">
               <li>Hasta <strong>10 profesionales</strong></li>
               <li><strong>1 asistente administrativo incluido</strong></li>
-              <li>Múltiples centros y agendas complejas</li>
+              <li>Múltiples centros médicos y agendas complejas</li>
               <li>Acompañamiento en la puesta en marcha</li>
             </ul>
             <p class="hint">
-              Pensado para centros en crecimiento con varias sedes y muchos profesionales rotando.
+              Pensado para centros en expansión o redes de profesionales que requieren una coordinación más amplia.
             </p>
             <p class="muted">
-              Centro adicional: <strong>$3.500</strong> / mes<br />
+              Centro médico adicional: <strong>$3.500</strong> / mes<br />
               Asistente administrativo adicional: <strong>$1.500</strong> / mes
             </p>
             <a
-              href="https://wa.me/541138492392?text=Hola%20👋%20Quiero%20averiguar%20más%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions%20👩‍⚕️👨‍⚕️"
-              class="btn primary full"
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
               target="_blank"
               rel="noopener"
             >
-              Consultar por este plan
+              Consultar por el Plan Red de Profesionales
             </a>
           </article>
         </div>
 
         <p class="note">
-          Para más de <strong>10 profesionales</strong>, armamos un esquema a medida según la estructura de tu centro.
+          Para estructuras con más de <strong>10 profesionales</strong>, se pueden acordar
+          condiciones a medida según la necesidad del centro médico.
         </p>
         <p class="note">
-          <strong>*Precios vigentes hasta diciembre 2025.</strong>
+          <strong>*Precios vigentes hasta diciembre de 2025.</strong>
         </p>
       </div>
     </section>
 
-
-    <!-- 4. CÓMO EMPEZAR (CTA WHATSAPP) -->
+    <!-- 4. CÓMO EMPEZAR -->
     <section id="empezar" class="section alt">
       <div class="container">
-        <h2>Cómo empezar con EG Health Solutions</h2>
+        <h2>Cómo iniciar la implementación</h2>
         <p class="section-lead">
-          El contacto y la implementación son simples. Trabajamos directo con el profesional y/o la
-          persona que administra los turnos, sin proveedores intermedios.
+          El proceso de adopción es simple y está orientado a minimizar el impacto en la operación diaria.
+          El contacto se realiza exclusivamente por WhatsApp.
         </p>
 
         <div class="steps">
           <div class="step">
             <span class="step-number">1</span>
             <div>
-              <h3>Nos escribís por WhatsApp</h3>
+              <h3>Contacto inicial</h3>
               <p>
-                Es nuestro único canal de contacto. Nos contás brevemente cómo trabajás hoy y cuántos
-                profesionales y centros querés manejar.
+                El centro médico se comunica por WhatsApp y comparte información básica:
+                cantidad de profesionales, cantidad de centros donde se atiende y modalidad
+                de trabajo del equipo administrativo.
               </p>
             </div>
           </div>
           <div class="step">
             <span class="step-number">2</span>
             <div>
-              <h3>Demo guiada y definición de plan</h3>
+              <h3>Demostración y definición del plan</h3>
               <p>
-                Te mostramos la vista del sistema (la misma que ves en las capturas) y definimos cuál
-                de los tres planes encaja mejor con tu centro.
+                Se realiza una demostración remota de la plataforma y se analiza cuál de
+                los planes se ajusta mejor a la realidad del centro. Se acuerdan plazos
+                y alcance de la implementación.
               </p>
             </div>
           </div>
           <div class="step">
             <span class="step-number">3</span>
             <div>
-              <h3>Alta y acompañamiento inicial</h3>
+              <h3>Configuración y acompañamiento</h3>
               <p>
-                Configuramos profesionales, centros y asistentes. Te dejamos el sistema listo para usar
-                y acompañamos los primeros días hasta que quede incorporado.
+                Se configuran profesionales, centros médicos y asistentes administrativos.
+                Durante los primeros días de uso se ofrece acompañamiento cercano para
+                asegurar una adopción ordenada del sistema.
               </p>
             </div>
           </div>
@@ -316,38 +329,38 @@
 
         <div style="margin-top:1.8rem;">
           <p class="section-lead">
-            Si ya querés avanzar, escribinos ahora:
+            Para coordinar una demostración o realizar consultas comerciales:
           </p>
           <a
-            href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20eghealthsolutions"
-            class="btn primary"
+            href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
+            class="btn btn-whatsapp"
             target="_blank"
             rel="noopener"
           >
-            Abrir WhatsApp y hablar con nosotros
+            Iniciar contacto por WhatsApp
           </a>
           <p class="muted" style="margin-top:.6rem;">
-            Mensaje sugerido: <em>"Quiero averiguar más sobre eghealthsolutions"</em>.
+            Mensaje sugerido: <em>“Quiero averiguar más sobre EG Health Solutions para la gestión de turnos de mi centro médico.”</em>
           </p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- PIE DE PÁGINA -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span id="year"></span> eghealthsolutions.com — Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- BOTÓN FLOTANTE DE WHATSAPP (ÚNICO MEDIO DE CONTACTO) -->
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
   <a
-    href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20eghealthsolutions"
+    href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
     class="whatsapp-fab"
     target="_blank"
     rel="noopener"
-    aria-label="Chatear por WhatsApp"
+    aria-label="Contactar por WhatsApp"
   >
     💬
   </a>
