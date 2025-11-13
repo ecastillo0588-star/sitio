@@ -67,17 +67,17 @@ body{
   gap:.75rem;
 }
 
-.brand-logo{
-  width:32px;
-  height:32px;
-  border-radius:10px;
-  background:linear-gradient(135deg, var(--brand), var(--brand-2));
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-  font-size:.95rem;
+/* Logo en el encabezado (imagen) */
+.brand-logo-img{
+  height:40px;      /* ajustá este valor si querés más grande o más chico */
+  width:auto;
+  display:block;
+}
+
+@media (max-width:600px){
+  .brand-logo-img{
+    height:32px;
+  }
 }
 
 .brand-text{
@@ -163,6 +163,17 @@ body{
 
 .btn.full{
   width:100%;
+}
+
+/* Botones específicos de WhatsApp */
+.btn-whatsapp{
+  background:#25D366;
+  border-color:#1ebe5d;
+  color:#fff;
+}
+
+.btn-whatsapp:hover{
+  filter:brightness(1.05);
 }
 
 /* Hero */
@@ -301,7 +312,7 @@ body{
   gap:.5rem;
 }
 
-/* Secciones genericas */
+/* Secciones genéricas */
 .section{
   padding:3rem 0;
   background:var(--bg);
@@ -330,6 +341,10 @@ body{
 
 .cards-3{
   grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+}
+
+.cards-2{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
 
 /* Cards */
@@ -434,7 +449,7 @@ body{
   margin-bottom:.25rem;
 }
 
-/* Contacto */
+/* Contacto (no se usa mucho pero lo dejamos por si expandís) */
 .contacto{
   display:grid;
   grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
@@ -521,7 +536,7 @@ body{
     flex-wrap:wrap;
   }
   .nav{
-    display:none; /* si querés hamburguesa después la hacemos */
+    display:none; /* más adelante se puede reemplazar por menú hamburguesa */
   }
 }
 
@@ -557,11 +572,7 @@ body{
   filter:brightness(1.05);
 }
 
-/* Grid de demos */
-.cards-2{
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-
+/* Grid de demos (espacio para GIFs) */
 .demo-gif{
   margin-top:.9rem;
   width:100%;
