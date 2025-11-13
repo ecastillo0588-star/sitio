@@ -533,3 +533,43 @@ body{
     padding:2.5rem 0 2.2rem;
   }
 }
+
+/* Botón flotante de WhatsApp */
+.whatsapp-fab{
+  position:fixed;
+  right:1.4rem;
+  bottom:1.4rem;
+  width:52px;
+  height:52px;
+  border-radius:999px;
+  background:#25D366;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.5rem;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  text-decoration:none;
+  z-index:50;
+}
+
+.whatsapp-fab:hover{
+  filter:brightness(1.05);
+}
+
+/* Grid de demos */
+.cards-2{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+
+.demo-gif{
+  margin-top:.9rem;
+  width:100%;
+  border-radius:12px;
+  border:1px dashed var(--line);
+  padding:1.5rem;
+  text-align:center;
+  font-size:.9rem;
+  color:var(--muted);
+  background:#f7f9ff;
+}
