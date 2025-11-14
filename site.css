@@ -354,10 +354,17 @@ body{
   color:var(--muted);
 }
 
-/* Destacado plan */
 .pricing .card{
   position:relative;
+  display:flex;
+  flex-direction:column; /* la card se vuelve columna flex */
 }
+
+/* hace que el botón baje al fondo de cada card */
+.pricing .card .btn.full{
+  margin-top:auto;
+}
+
 
 .pricing .card.destacado{
   border-color:var(--brand-2);
