@@ -44,12 +44,13 @@
     <!-- 1. PRESENTACIÓN -->
     <section id="presentacion" class="hero">
       <div class="container hero-inner">
+        <!-- Columna izquierda: problema + solución -->
         <div class="hero-copy">
           <p class="pill">
             Plataforma de gestión de turnos para centros médicos y consultorios
           </p>
           <h1>
-            ¿Seguís manejando los turnos en Excel,<br />
+            ¿Seguís manejando los turnos en hojas de cálculo,<br />
             cuadernos o chats sueltos?
           </h1>
           <p class="hero-sub">
@@ -77,7 +78,7 @@
           <div class="hero-kpi">
             <div>
               <span class="kpi-label">Pensado para vos si...</span>
-              <span class="kpi-value">Usás Excel, cuadernos o varios WhatsApp para los turnos</span>
+              <span class="kpi-value">Usás hojas de cálculo, cuadernos o varios WhatsApp para los turnos</span>
             </div>
             <div>
               <span class="kpi-label">Escala ideal</span>
@@ -85,14 +86,26 @@
             </div>
           </div>
 
-          <div class="hero-diffs">
+          <div class="hero-chips">
             <span class="chip mini">Implementación sin costo</span>
             <span class="chip mini">Listo para usar en pocos días</span>
             <span class="chip mini">Costos mensuales bajos</span>
           </div>
         </div>
 
-        <!-- Nota: se eliminó la columna de la derecha con la mini vista del sistema -->
+        <!-- Columna derecha: diferenciales -->
+        <aside class="hero-benefits">
+          <h3>Por qué elegir EG Health Solutions</h3>
+          <ul>
+            <li><strong>Sin costo de implementación:</strong> solo pagás el abono mensual.</li>
+            <li><strong>Rápido de poner en marcha:</strong> en pocos días podés tener la agenda unificada.</li>
+            <li><strong>Pensado para equipos chicos:</strong> ideal hasta 10 profesionales.</li>
+            <li><strong>Todo por WhatsApp:</strong> el contacto y el acompañamiento son directos y simples.</li>
+          </ul>
+          <p class="hero-note">
+            Ideal si hoy manejás los turnos con hojas de cálculo tipo Excel, cuadernos o varios grupos de WhatsApp.
+          </p>
+        </aside>
       </div>
     </section>
 
@@ -101,8 +114,8 @@
       <div class="container">
         <h2>El sistema en la práctica</h2>
         <p class="section-lead">
-          Mirá cómo se ve el panel de turnos en el día a día. Pasá el mouse por encima de cada video
-          para ver el funcionamiento.
+          Mirá cómo se ve el panel de turnos en el día a día. Pasá el mouse por encima de cada vista
+          para ver la animación o ampliá la imagen para verla mejor.
         </p>
 
         <div class="grid cards-2 demo-grid">
@@ -116,17 +129,26 @@
               Facilita el trabajo de recepción y permite identificar rápidamente
               demoras y espacios disponibles.
             </p>
-            <!-- IMPORTANTE:
-                 data-static debe apuntar a una imagen fija (JPG/PNG)
-                 y data-gif al GIF animado.
-                 Ajustá los nombres de archivo según los que tengas. -->
-            <img
-              src="./vistainicio-static.png"
-              data-static="./vistainicio-static.png"
-              data-gif="./vistainicio-ezgif.com-video-to-gif-converter.gif"
-              alt="Vista inicial del panel de turnos en EG Health Solutions"
-              class="demo-gif-img"
-            />
+
+            <div class="demo-thumb">
+              <img
+                src="./vistainicio-static.png"
+                data-static="./vistainicio-static.png"
+                data-gif="./vistainicio-ezgif.com-video-to-gif-converter.gif"
+                alt="Vista inicial del panel de turnos en EG Health Solutions"
+                class="demo-gif-img"
+              />
+              <div class="demo-thumb-label">
+                ▶ Pasá el mouse para ver la animación
+              </div>
+              <button
+                type="button"
+                class="demo-expand"
+                aria-label="Ampliar vista del sistema"
+              >
+                ⤢
+              </button>
+            </div>
           </article>
 
           <!-- GIF 2: Alta y seguimiento de turnos -->
@@ -138,17 +160,46 @@
               Permite llevar un seguimiento ordenado de la atención durante toda
               la jornada.
             </p>
-            <img
-              src="./videoturnos-static.png"
-              data-static="./videoturnos-static.png"
-              data-gif="./videoturnos-ezgif.com-video-to-gif-converter.gif"
-              alt="Carga y actualización de turnos en EG Health Solutions"
-              class="demo-gif-img"
-            />
+
+            <div class="demo-thumb">
+              <img
+                src="./videoturnos-static.png"
+                data-static="./videoturnos-static.png"
+                data-gif="./videoturnos-ezgif.com-video-to-gif-converter.gif"
+                alt="Carga y actualización de turnos en EG Health Solutions"
+                class="demo-gif-img"
+              />
+              <div class="demo-thumb-label">
+                ▶ Pasá el mouse para ver la animación
+              </div>
+              <button
+                type="button"
+                class="demo-expand"
+                aria-label="Ampliar vista del sistema"
+              >
+                ⤢
+              </button>
+            </div>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- MODAL PARA AMPLIAR DEMOS -->
+    <div class="demo-modal" id="demo-modal" aria-hidden="true">
+      <div class="demo-modal-backdrop"></div>
+      <div class="demo-modal-content">
+        <button
+          type="button"
+          class="demo-modal-close"
+          aria-label="Cerrar vista ampliada"
+        >
+          ✕
+        </button>
+        <img src="" alt="" id="demo-modal-img" />
+        <p id="demo-modal-caption"></p>
+      </div>
+    </div>
 
     <!-- 3. PLANES -->
     <section id="planes" class="section">
@@ -172,7 +223,7 @@
             </ul>
             <p class="hint">
               Ideal para consultorios individuales o pequeños centros con un único profesional
-              que quieren dejar atrás el Excel y los cuadernos.
+              que quieren dejar atrás las hojas de cálculo y los cuadernos.
             </p>
             <p class="muted">
               Centro médico adicional: <strong>$7.000</strong> / mes<br />
@@ -340,26 +391,63 @@
   </a>
 
   <script>
-    // Año en el pie
+    // Año en el pie de página
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // GIFs que solo se animan al pasar el mouse
-    // Necesitás tener una imagen estática (JPG/PNG) y el GIF animado.
-    // data-static -> imagen fija, data-gif -> GIF animado.
-    document.querySelectorAll(".demo-gif-img").forEach(function (img) {
+    // GIFs: miniatura fija + hover + modal
+    document.querySelectorAll(".demo-thumb").forEach(function (wrapper) {
+      var img = wrapper.querySelector(".demo-gif-img");
       var staticSrc = img.dataset.static || img.src;
       var gifSrc = img.dataset.gif;
 
       if (!gifSrc) return;
 
-      img.addEventListener("mouseenter", function () {
+      // miniatura fija por defecto
+      img.src = staticSrc;
+
+      wrapper.addEventListener("mouseenter", function () {
         img.src = gifSrc;
       });
 
-      img.addEventListener("mouseleave", function () {
+      wrapper.addEventListener("mouseleave", function () {
         img.src = staticSrc;
       });
+
+      // botón para ampliar en modal
+      var expandBtn = wrapper.querySelector(".demo-expand");
+      if (expandBtn) {
+        expandBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var modal = document.getElementById("demo-modal");
+          var modalImg = document.getElementById("demo-modal-img");
+          var modalCaption = document.getElementById("demo-modal-caption");
+
+          modalImg.src = gifSrc;
+          modalImg.alt = img.alt;
+          modalCaption.textContent = img.alt;
+
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      }
     });
+
+    // cerrar modal (click en fondo o botón cerrar)
+    (function () {
+      var modal = document.getElementById("demo-modal");
+      if (!modal) return;
+
+      modal.addEventListener("click", function (e) {
+        if (
+          e.target.classList.contains("demo-modal-backdrop") ||
+          e.target.classList.contains("demo-modal-close")
+        ) {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.getElementById("demo-modal-img").src = "";
+        }
+      });
+    })();
   </script>
 </body>
 </html>
