@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Export the app as static HTML (for GitHub Pages)
+  output: 'export',
 };
 
 export default nextConfig;
