@@ -307,37 +307,28 @@ if (typeof window !== 'undefined') {
       const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
       if (!cta || !fab || !('IntersectionObserver' in window)) return;
 
-      // Prepare handlers; on mobile these remain no-ops, on desktop they'll be assigned
-      let showFabFromCta: () => void = () => {};
-      let hideFab: () => void = () => {};
-
-      // Observe CTA for controlling back-to-top and (on desktop) the FAB
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            if (backBtn) backBtn.classList.remove('visible');
-            if (fab) {
-              // ensure hidden immediately
-              fab.classList.remove('visible');
-              if (window.innerWidth >= 1024) hideFab();
+      // BACK-TO-TOP: observe CTA for all sizes (show when CTA not visible)
+      let backIo: IntersectionObserver | null = null;
+      if (backBtn) {
+        backIo = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              backBtn.classList.remove('visible');
+              if (fab) fab.classList.remove('visible');
+            } else {
+              backBtn.classList.add('visible');
+              if (fab) fab.classList.add('visible');
             }
-          } else {
-            if (backBtn) backBtn.classList.add('visible');
-            if (fab) {
-              // ensure visible immediately
-              fab.classList.add('visible');
-              if (window.innerWidth >= 1024) showFabFromCta();
-            }
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px' });
-      io.observe(cta);
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+        backIo.observe(cta);
+      }
 
-      // FAB: desktop-only additional handling (animations are inside show/hide)
+      // FAB: only desktop behavior
       if (window.innerWidth >= 1024) {
         let animating = false;
 
-        showFabFromCta = () => {
+        const showFabFromCta = () => {
           if (animating) return;
           const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
 
@@ -381,49 +372,51 @@ if (typeof window !== 'undefined') {
           fab.addEventListener('transitionend', onEnd);
         };
 
-        hideFab = () => {
+        const hideFab = () => {
           if (animating) return;
-          // animate back to CTA position then hide
-          const cRect = cta.getBoundingClientRect();
-          const fRect = fab.getBoundingClientRect();
-          const cCx = cRect.left + cRect.width / 2;
-          const cCy = cRect.top + cRect.height / 2;
-          const fCx = fRect.left + fRect.width / 2;
-          const fCy = fRect.top + fRect.height / 2;
-          const dx = cCx - fCx;
-          const dy = cCy - fCy;
-
+          // Use the same keyframes as show but in reverse so disappearance matches appearance.
           animating = true;
-          fab.style.transition = 'transform .32s ease, opacity .22s ease';
-          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
-          fab.style.opacity = '0';
 
-          let cleaned = false;
-          const cleanUp = () => {
-            if (cleaned) return;
-            cleaned = true;
+          // Clear inline transitions/transforms to let CSS animation drive the hide.
+          fab.style.transition = '';
+          fab.style.transform = '';
+          fab.style.opacity = '';
+
+          // Add hiding class which runs the reverse animation, then remove visible when done.
+          fab.classList.add('hiding');
+
+          const onAnimEnd = () => {
             animating = false;
+            fab.classList.remove('hiding');
             fab.classList.remove('visible');
-            fab.style.transition = '';
-            fab.style.transform = '';
-            fab.style.opacity = '';
+            fab.removeEventListener('animationend', onAnimEnd);
           };
-
-          const onEndHide = () => {
-            cleanUp();
-            fab.removeEventListener('transitionend', onEndHide);
-          };
-
-          fab.addEventListener('transitionend', onEndHide);
-          // Fallback: ensure cleanup after max duration in case transitionend doesn't fire
-          setTimeout(() => cleanUp(), 420);
+          fab.addEventListener('animationend', onAnimEnd);
         };
 
-        // initial check: if CTA is already off-screen, ensure both controls show
-        if (cta.getBoundingClientRect().bottom <= 0) {
-          if (backBtn) backBtn.classList.add('visible');
-          showFabFromCta();
-        }
+        // Track whether the hero CTA is visible. IntersectionObserver updates this.
+        let ctaVisible = cta.getBoundingClientRect().bottom > 0 && cta.getBoundingClientRect().top < window.innerHeight;
+
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            // track visibility state but let backIo perform the actual toggling
+            ctaVisible = e.isIntersecting;
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+
+        io.observe(cta);
+
+        // The IntersectionObserver controls visibility for both buttons: when the CTA is
+        // not visible we show both the back-to-top and the WhatsApp FAB; when the CTA
+        // becomes visible we hide them. This mirrors the behavior of the "subir" button.
+        if (!ctaVisible) showFabFromCta();
+
+        // cleanup when navigating away
+        const cleanup = () => {
+          try { io.disconnect(); } catch (e) { /* ignore */ }
+          try { backIo && (backIo as IntersectionObserver).disconnect(); } catch (e) { /* ignore */ }
+        };
+        window.addEventListener('unload', cleanup);
       }
     } catch (err) {
       // noop

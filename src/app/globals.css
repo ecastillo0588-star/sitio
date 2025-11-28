@@ -72,22 +72,27 @@ a {
   .whatsapp-fab { right: 1rem !important; bottom: 1rem !important; width: 52px !important; height: 52px !important; }
 }
 
-/* Floating WhatsApp FAB base styles + visibility control */
+/* Floating WhatsApp FAB visibility control */
 .whatsapp-fab {
   position: fixed;
   right: 1.4rem;
   bottom: 1.4rem;
   width: 60px;
   height: 60px;
-  border-radius: 999px;
+  border-radius: 50%;
   background: #25D366;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  font-size: 1.2rem;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  border: 2px solid rgba(255,255,255,0.12);
   text-decoration: none;
-  color: #fff;
-  z-index: 50;
+  z-index: 60;
+}
+
+.whatsapp-fab {
   transition: opacity .22s ease, transform .22s ease;
   opacity: 0;
   transform: translateY(8px);
@@ -110,6 +115,11 @@ a {
   animation: fab-pop .45s cubic-bezier(.2,.8,.2,1);
 }
 
+/* Animate out using the same keyframes in reverse so hide matches appear */
+.whatsapp-fab.hiding {
+  animation: fab-pop .35s cubic-bezier(.2,.8,.2,1) reverse forwards;
+}
+
 /* Back-to-top button */
 .back-to-top {
   position: fixed;
@@ -118,8 +128,8 @@ a {
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  background: #111827;
-  color: #e5e7eb;
+  background: var(--brand);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
