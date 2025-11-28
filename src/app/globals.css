@@ -85,6 +85,17 @@ a {
   pointer-events: auto;
 }
 
+/* Attention animation when FAB appears */
+@keyframes fab-pop {
+  0% { transform: translateY(8px) scale(0.9); opacity: 0; }
+  60% { transform: translateY(-6px) scale(1.08); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.whatsapp-fab.visible {
+  animation: fab-pop .45s cubic-bezier(.2,.8,.2,1);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
