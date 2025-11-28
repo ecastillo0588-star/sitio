@@ -307,21 +307,21 @@ if (typeof window !== 'undefined') {
       const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
       if (!cta || !fab || !('IntersectionObserver' in window)) return;
 
-      // BACK-TO-TOP: observe CTA for all sizes (show when CTA not visible)
-      if (backBtn) {
-        const backIo = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              backBtn.classList.remove('visible');
-            } else {
-              backBtn.classList.add('visible');
-            }
-          });
-        }, { threshold: 0, rootMargin: '0px' });
-        backIo.observe(cta);
-      }
+      // Observe CTA for controlling back-to-top and (on desktop) the FAB
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            if (backBtn) backBtn.classList.remove('visible');
+            if (window.innerWidth >= 1024 && fab) hideFab();
+          } else {
+            if (backBtn) backBtn.classList.add('visible');
+            if (window.innerWidth >= 1024 && fab) showFabFromCta();
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px' });
+      io.observe(cta);
 
-      // FAB: only desktop behavior
+      // FAB: desktop-only additional handling (animations are inside show/hide)
       if (window.innerWidth >= 1024) {
         let animating = false;
 
@@ -407,20 +407,11 @@ if (typeof window !== 'undefined') {
           setTimeout(() => cleanUp(), 420);
         };
 
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              hideFab();
-            } else {
-              showFabFromCta();
-            }
-          });
-        }, { threshold: 0, rootMargin: '0px' });
-
-        io.observe(cta);
-
-        // initial check
-        if (cta.getBoundingClientRect().bottom <= 0) showFabFromCta();
+        // initial check: if CTA is already off-screen, ensure both controls show
+        if (cta.getBoundingClientRect().bottom <= 0) {
+          if (backBtn) backBtn.classList.add('visible');
+          showFabFromCta();
+        }
       }
     } catch (err) {
       // noop
