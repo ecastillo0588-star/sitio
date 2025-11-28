@@ -54,6 +54,24 @@ a {
   text-decoration: none;
 }
 
+/* Responsive tweaks */
+.hero-inner { width: 100%; }
+.hero-title { /* allow overrides on small screens */ }
+.hero-sub { max-width: 580px; }
+.hero-ctas a { min-width: 0; }
+
+@media (max-width: 768px) {
+  .hero { padding: 2rem 0 !important; }
+  .hero-inner { display: block !important; padding: 0 1rem !important; }
+  .hero-copy { margin-bottom: 1rem !important; }
+  .hero-title { font-size: 1.6rem !important; line-height: 1.25 !important; margin-bottom: .6rem !important; }
+  .hero-sub { font-size: 0.98rem !important; max-width: 100% !important; }
+  .hero-ctas { display: flex !important; flex-direction: column !important; gap: .6rem !important; }
+  .hero-ctas .hero-cta { display: block !important; width: 100% !important; text-align: center !important; }
+  nav { display: none !important; }
+  .whatsapp-fab { right: 1rem !important; bottom: 1rem !important; width: 52px !important; height: 52px !important; }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -36,18 +36,18 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section id="presentacion" className="hero" style={{padding:"4rem 0", background:"var(--bg)"}}>
-          <div style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem", display:"grid", gridTemplateColumns:"minmax(0,1.5fr) minmax(0,1fr)", gap:"3rem", alignItems:"flex-start"}}>
+          <div className="hero-inner" style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem", display:"grid", gridTemplateColumns:"minmax(0,1.5fr) minmax(0,1fr)", gap:"3rem", alignItems:"flex-start"}}>
             <div className="hero-copy">
               <p style={{display:"inline-block", background:"#f3f1fb", border:"1px solid var(--line)", color:"var(--muted)", borderRadius:999, padding:".25rem .7rem", fontSize:".8rem", marginBottom:".85rem"}}>Agenda online para médicos y consultorios</p>
-              <h1 style={{fontSize:"2.25rem", lineHeight:1.2, marginBottom:".8rem"}}>
-                ¿Seguís manejando tus turnos en hojas de cálculo,<br />cuadernos o chats sueltos?
+              <h1 className="hero-title" style={{fontSize:"2.25rem", lineHeight:1.2, marginBottom:".8rem"}}>
+                ¿Seguís manejando tus turnos en hojas de cálculo,<br />cuadernos o chats sueltos? <span className="highlight">Simple y rápida.</span>
               </h1>
-              <p style={{fontSize:"1rem", color:"var(--muted)", maxWidth:580, marginBottom:"1rem"}}>
-                EG Health Solutions, la nueva forma de ordenar tus turnos en un solo lugar con total seguridad, privacidad y te permite diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
+              <p className="hero-sub" style={{fontSize:"1rem", color:"var(--muted)", maxWidth:580, marginBottom:"1rem"}}>
+                EG Health Solutions ordena tus turnos en un solo lugar y permitet diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
               </p>
-              <div style={{display:"flex", gap:".75rem", margin:"1.4rem 0 1.7rem"}}>
-                <a href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions" target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Escribir por WhatsApp</a>
-                <a href="#features" style={{background:"#fff", color:"var(--ink)", border:"1px solid var(--line)", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Mirá cómo funciona el sistema</a>
+              <div className="hero-ctas" style={{display:"flex", gap:".75rem", margin:"1.4rem 0 1.7rem"}}>
+                <a className="hero-cta primary" href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions" target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Escribir por WhatsApp</a>
+                <a className="hero-cta secondary" href="#features" style={{background:"#fff", color:"var(--ink)", border:"1px solid var(--line)", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Mirá cómo funciona el sistema</a>
               </div>
             </div>
             <aside style={{background:"var(--card)", borderRadius:18, padding:"1.7rem 1.9rem", border:"1px solid var(--line)", boxShadow:"0 18px 40px rgba(17, 24, 39, 0.06)", fontSize:".95rem"}}>
@@ -104,7 +104,7 @@ export default function Home() {
           <div style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem"}}>
             <h2 style={{fontSize:"1.8rem", marginBottom:".6rem"}}>Planes y condiciones comerciales</h2>
             <div style={{display:"grid", gap:"1.7rem", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))"}}>
-              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column", position:"relative"}}>
+              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column"}}>
                 <h3>Plan Consultorio</h3>
                 <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$25.000 / mes</p>
                 <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
@@ -115,14 +115,9 @@ export default function Home() {
                 </ul>
                 <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que atienden en su propio consultorio y quieren dejar atrás las hojas de cálculo y los cuadernos, sin meterse en sistemas complicados.</p>
                 <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$7.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
+                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none", marginTop:"auto"}}>Consultar</a>
               </div>
-              <div style={{background:"var(--card)", borderRadius:14, border:"2px solid var(--brand-2)", boxShadow:"0 12px 32px rgba(0,0,0,.12)", padding:"1.4rem 1.45rem", display:"flex", flexDirection:"column", position:"relative"}}>
+              <div style={{background:"var(--card)", borderRadius:14, border:"2px solid var(--brand-2)", boxShadow:"0 12px 32px rgba(0,0,0,.12)", padding:"1.4rem 1.45rem", display:"flex", flexDirection:"column"}}>
                 <div style={{position:"absolute", top:12, right:12, fontSize:".7rem", textTransform:"uppercase", letterSpacing:".04em", background:"#f4f1ff", borderRadius:999, padding:".15rem .5rem", border:"1px solid var(--line)"}}>Más elegido</div>
                 <h3>Plan Equipo</h3>
                 <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$70.000 / mes</p>
@@ -134,14 +129,9 @@ export default function Home() {
                 </ul>
                 <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que comparten secretaria o consultorio con otros colegas y necesitan ver todos los turnos en una sola agenda.</p>
                 <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$5.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
+                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none", marginTop:"auto"}}>Consultar</a>
               </div>
-              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column", position:"relative"}}>
+              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column"}}>
                 <h3>Plan Red de Profesionales</h3>
                 <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$150.000 / mes</p>
                 <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
@@ -152,12 +142,7 @@ export default function Home() {
                 </ul>
                 <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que atienden en varios lugares o con varios profesionales y necesitan coordinar muchas agendas sin usar mil planillas.</p>
                 <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$3.500</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
+                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none", marginTop:"auto"}}>Consultar</a>
               </div>
             </div>
             <p style={{marginTop:"1.1rem", fontSize:".9rem", color:"var(--muted)"}}><strong>Sin costo de implementación.</strong> Pagás solo el abono mensual según el plan que elijas.<br /><strong>*Precios vigentes hasta diciembre de 2025.</strong></p>
