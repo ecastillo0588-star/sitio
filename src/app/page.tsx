@@ -11,6 +11,46 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    // Preload demo GIFs in the background so they start instantly on hover.
+    // Strategy: use IntersectionObserver to only preload gifs when their img enters viewport,
+    // create a new Image() to fetch the gif into the browser cache without showing/playing it.
+    const imgs = Array.from(document.querySelectorAll<HTMLImageElement>('.demo-gif-img'));
+    if (!imgs.length) return;
+
+    const preloadGif = (img: HTMLImageElement) => {
+      const gif = img.dataset.gif;
+      if (!gif || img.dataset.preloaded === '1') return;
+      // Use the browser global Image constructor. `Image` is imported from 'next/image'
+      // above, so reference `window.Image` to avoid the name collision.
+      const loader = typeof window !== 'undefined' ? new window.Image() : new (globalThis as any).Image();
+      loader.src = gif;
+      // mark as preloaded to avoid double-loading
+      img.dataset.preloaded = '1';
+      // store loader reference to avoid GC if desired (optional)
+      (img as any)._gifPreloader = loader;
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const el = e.target as HTMLImageElement;
+            preloadGif(el);
+            observer.unobserve(el);
+          }
+        });
+      }, { rootMargin: '200px' });
+
+      imgs.forEach(img => io.observe(img));
+      return () => io.disconnect();
+    }
+
+    // Fallback: preload all after small delay
+    const fallbackTimer = setTimeout(() => imgs.forEach(preloadGif), 800);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   return (
     <>
       {/* Header */}
@@ -36,18 +76,18 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section id="presentacion" className="hero" style={{padding:"4rem 0", background:"var(--bg)"}}>
-          <div style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem", display:"grid", gridTemplateColumns:"minmax(0,1.5fr) minmax(0,1fr)", gap:"3rem", alignItems:"flex-start"}}>
+          <div className="hero-inner" style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem", display:"grid", gridTemplateColumns:"minmax(0,1.5fr) minmax(0,1fr)", gap:"3rem", alignItems:"flex-start"}}>
             <div className="hero-copy">
               <p style={{display:"inline-block", background:"#f3f1fb", border:"1px solid var(--line)", color:"var(--muted)", borderRadius:999, padding:".25rem .7rem", fontSize:".8rem", marginBottom:".85rem"}}>Agenda online para médicos y consultorios</p>
-              <h1 style={{fontSize:"2.25rem", lineHeight:1.2, marginBottom:".8rem"}}>
-                ¿Seguís manejando tus turnos en hojas de cálculo,<br />cuadernos o chats sueltos?
+              <h1 className="hero-title" style={{fontSize:"2.25rem", lineHeight:1.2, marginBottom:".8rem"}}>
+                ¿Seguís manejando tus turnos en hojas de cálculo,<br />cuadernos o chats sueltos? <span className="highlight">Simple y rápida.</span>
               </h1>
-              <p style={{fontSize:"1rem", color:"var(--muted)", maxWidth:580, marginBottom:"1rem"}}>
-                EG Health Solutions, la nueva forma de ordenar tus turnos en un solo lugar con total seguridad, privacidad y te permite diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
+              <p className="hero-sub" style={{fontSize:"1rem", color:"var(--muted)", maxWidth:580, marginBottom:"1rem"}}>
+                EG Health Solutions ordena tus turnos en un solo lugar y permitet diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
               </p>
-              <div style={{display:"flex", gap:".75rem", margin:"1.4rem 0 1.7rem"}}>
-                <a href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions" target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Escribir por WhatsApp</a>
-                <a href="#features" style={{background:"#fff", color:"var(--ink)", border:"1px solid var(--line)", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Mirá cómo funciona el sistema</a>
+              <div className="hero-ctas" style={{display:"flex", gap:".75rem", margin:"1.4rem 0 1.7rem"}}>
+                <a className="hero-cta primary" href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions" target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Escribir por WhatsApp</a>
+                <a className="hero-cta secondary" href="#features" style={{background:"#fff", color:"var(--ink)", border:"1px solid var(--line)", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Mirá cómo funciona el sistema</a>
               </div>
             </div>
             <aside style={{background:"var(--card)", borderRadius:18, padding:"1.7rem 1.9rem", border:"1px solid var(--line)", boxShadow:"0 18px 40px rgba(17, 24, 39, 0.06)", fontSize:".95rem"}}>
