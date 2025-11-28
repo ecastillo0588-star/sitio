@@ -386,15 +386,25 @@ if (typeof window !== 'undefined') {
           fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
           fab.style.opacity = '0';
 
-          const onEndHide = () => {
+          let cleaned = false;
+          const cleanUp = () => {
+            if (cleaned) return;
+            cleaned = true;
             animating = false;
             fab.classList.remove('visible');
             fab.style.transition = '';
             fab.style.transform = '';
             fab.style.opacity = '';
+          };
+
+          const onEndHide = () => {
+            cleanUp();
             fab.removeEventListener('transitionend', onEndHide);
           };
+
           fab.addEventListener('transitionend', onEndHide);
+          // Fallback: ensure cleanup after max duration in case transitionend doesn't fire
+          setTimeout(() => cleanUp(), 420);
         };
 
         const io = new IntersectionObserver((entries) => {
