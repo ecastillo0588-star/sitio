@@ -274,21 +274,6 @@ export default function Home() {
         rel="noopener"
         aria-label="Contactar por WhatsApp"
         className="whatsapp-fab"
-        style={{
-          position: "fixed",
-          right: "1.4rem",
-          bottom: "1.4rem",
-          width: 60,
-          height: 60,
-          borderRadius: 999,
-          background: "#25D366",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 10px 24px rgba(0,0,0,.25)",
-          textDecoration: "none",
-          zIndex: 50,
-        }}
       >
         {/* SVG inline para un ícono nítido y sin fondo */}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={32} height={32} aria-hidden="true" focusable={false}>
@@ -342,7 +327,15 @@ if (typeof window !== 'undefined') {
 
         const showFabFromCta = () => {
           if (animating) return;
-          // compute centers
+          const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
+
+          if (alreadyFlown) {
+            // Skip fly animation on subsequent shows this session — just reveal
+            fab.classList.add('visible');
+            return;
+          }
+
+          // compute centers for fly animation
           const cRect = cta.getBoundingClientRect();
           const fRect = fab.getBoundingClientRect();
           const cCx = cRect.left + cRect.width / 2;
@@ -369,6 +362,7 @@ if (typeof window !== 'undefined') {
 
           const onEnd = () => {
             animating = false;
+            try { sessionStorage.setItem('fabFlown', '1'); } catch (e) { /* ignore */ }
             fab.style.transition = '';
             fab.removeEventListener('transitionend', onEnd);
           };
