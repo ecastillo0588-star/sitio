@@ -296,6 +296,16 @@ export default function Home() {
           <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
         </svg>
       </a>
+      <a
+        href="#top"
+        onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+        aria-label="Ir arriba"
+        className="back-to-top"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} aria-hidden="true" focusable={false}>
+          <path fill="currentColor" d="M12 6l-6 6h4v6h4v-6h4z" />
+        </svg>
+      </a>
     </>
   );
 }
@@ -307,72 +317,107 @@ if (typeof window !== 'undefined') {
   // run after load so DOM nodes exist
   window.addEventListener('load', () => {
     try {
-      // Only enable on desktop (>= 1024px)
-      if (window.innerWidth < 1024) return;
-
       const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
       const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
+      const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
       if (!cta || !fab || !('IntersectionObserver' in window)) return;
 
-      let animating = false;
+      // BACK-TO-TOP: observe CTA for all sizes (show when CTA not visible)
+      if (backBtn) {
+        const backIo = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              backBtn.classList.remove('visible');
+            } else {
+              backBtn.classList.add('visible');
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+        backIo.observe(cta);
+      }
 
-      const showFabFromCta = () => {
-        if (animating) return;
-        // compute centers
-        const cRect = cta.getBoundingClientRect();
-        const fRect = fab.getBoundingClientRect();
-        const cCx = cRect.left + cRect.width / 2;
-        const cCy = cRect.top + cRect.height / 2;
-        const fCx = fRect.left + fRect.width / 2;
-        const fCy = fRect.top + fRect.height / 2;
-        const dx = cCx - fCx;
-        const dy = cCy - fCy;
+      // FAB: only desktop behavior
+      if (window.innerWidth >= 1024) {
+        let animating = false;
 
-        // prepare starting transform so FAB appears at CTA position
-        fab.style.transition = 'none';
-        fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
-        fab.style.opacity = '0';
-        // force reflow
-        // eslint-disable-next-line no-unused-expressions
-        (fab as any).offsetWidth;
+        const showFabFromCta = () => {
+          if (animating) return;
+          // compute centers
+          const cRect = cta.getBoundingClientRect();
+          const fRect = fab.getBoundingClientRect();
+          const cCx = cRect.left + cRect.width / 2;
+          const cCy = cRect.top + cRect.height / 2;
+          const fCx = fRect.left + fRect.width / 2;
+          const fCy = fRect.top + fRect.height / 2;
+          const dx = cCx - fCx;
+          const dy = cCy - fCy;
 
-        // animate to final
-        animating = true;
-        fab.classList.add('visible');
-        fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
-        fab.style.transform = 'none';
-        fab.style.opacity = '1';
+          // prepare starting transform so FAB appears at CTA position
+          fab.style.transition = 'none';
+          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
+          fab.style.opacity = '0';
+          // force reflow
+          // eslint-disable-next-line no-unused-expressions
+          (fab as any).offsetWidth;
 
-        const onEnd = () => {
-          animating = false;
-          fab.style.transition = '';
-          fab.removeEventListener('transitionend', onEnd);
+          // animate to final
+          animating = true;
+          fab.classList.add('visible');
+          fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
+          fab.style.transform = 'none';
+          fab.style.opacity = '1';
+
+          const onEnd = () => {
+            animating = false;
+            fab.style.transition = '';
+            fab.removeEventListener('transitionend', onEnd);
+          };
+          fab.addEventListener('transitionend', onEnd);
         };
-        fab.addEventListener('transitionend', onEnd);
-      };
 
-      const hideFab = () => {
-        if (animating) return;
-        fab.classList.remove('visible');
-        // ensure reset any inline transform
-        fab.style.transform = '';
-        fab.style.opacity = '';
-      };
+        const hideFab = () => {
+          if (animating) return;
+          // animate back to CTA position then hide
+          const cRect = cta.getBoundingClientRect();
+          const fRect = fab.getBoundingClientRect();
+          const cCx = cRect.left + cRect.width / 2;
+          const cCy = cRect.top + cRect.height / 2;
+          const fCx = fRect.left + fRect.width / 2;
+          const fCy = fRect.top + fRect.height / 2;
+          const dx = cCx - fCx;
+          const dy = cCy - fCy;
 
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            hideFab();
-          } else {
-            showFabFromCta();
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px' });
+          animating = true;
+          fab.style.transition = 'transform .32s ease, opacity .22s ease';
+          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
+          fab.style.opacity = '0';
 
-      io.observe(cta);
+          const onEndHide = () => {
+            animating = false;
+            fab.classList.remove('visible');
+            fab.style.transition = '';
+            fab.style.transform = '';
+            fab.style.opacity = '';
+            fab.removeEventListener('transitionend', onEndHide);
+          };
+          fab.addEventListener('transitionend', onEndHide);
+        };
 
-      // initial check
-      if (cta.getBoundingClientRect().bottom <= 0) showFabFromCta();
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              hideFab();
+            } else {
+              showFabFromCta();
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+
+        io.observe(cta);
+
+        // initial check
+        if (cta.getBoundingClientRect().bottom <= 0) showFabFromCta();
+      }
     } catch (err) {
       // noop
     }
