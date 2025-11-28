@@ -11,6 +11,44 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    // Preload demo GIFs in the background so they start instantly on hover.
+    // Strategy: use IntersectionObserver to only preload gifs when their img enters viewport,
+    // create a new Image() to fetch the gif into the browser cache without showing/playing it.
+    const imgs = Array.from(document.querySelectorAll<HTMLImageElement>('.demo-gif-img'));
+    if (!imgs.length) return;
+
+    const preloadGif = (img: HTMLImageElement) => {
+      const gif = img.dataset.gif;
+      if (!gif || img.dataset.preloaded === '1') return;
+      const loader = new Image();
+      loader.src = gif;
+      // mark as preloaded to avoid double-loading
+      img.dataset.preloaded = '1';
+      // store loader reference to avoid GC if desired (optional)
+      (img as any)._gifPreloader = loader;
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const el = e.target as HTMLImageElement;
+            preloadGif(el);
+            observer.unobserve(el);
+          }
+        });
+      }, { rootMargin: '200px' });
+
+      imgs.forEach(img => io.observe(img));
+      return () => io.disconnect();
+    }
+
+    // Fallback: preload all after small delay
+    const fallbackTimer = setTimeout(() => imgs.forEach(preloadGif), 800);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   return (
     <>
       {/* Header */}
