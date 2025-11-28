@@ -72,8 +72,22 @@ a {
   .whatsapp-fab { right: 1rem !important; bottom: 1rem !important; width: 52px !important; height: 52px !important; }
 }
 
-/* Floating WhatsApp FAB visibility control */
+/* Floating WhatsApp FAB base styles + visibility control */
 .whatsapp-fab {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  text-decoration: none;
+  color: #fff;
+  z-index: 50;
   transition: opacity .22s ease, transform .22s ease;
   opacity: 0;
   transform: translateY(8px);
