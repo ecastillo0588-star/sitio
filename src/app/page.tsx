@@ -304,31 +304,77 @@ export default function Home() {
 // This script runs on the client side; it observes the primary hero CTA and
 // toggles the `.visible` class on `.whatsapp-fab` when the CTA scrolls out of view.
 if (typeof window !== 'undefined') {
-  // run after a short delay so DOM nodes exist
+  // run after load so DOM nodes exist
   window.addEventListener('load', () => {
     try {
+      // Only enable on desktop (>= 1024px)
+      if (window.innerWidth < 1024) return;
+
       const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
       const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
       if (!cta || !fab || !('IntersectionObserver' in window)) return;
 
+      let animating = false;
+
+      const showFabFromCta = () => {
+        if (animating) return;
+        // compute centers
+        const cRect = cta.getBoundingClientRect();
+        const fRect = fab.getBoundingClientRect();
+        const cCx = cRect.left + cRect.width / 2;
+        const cCy = cRect.top + cRect.height / 2;
+        const fCx = fRect.left + fRect.width / 2;
+        const fCy = fRect.top + fRect.height / 2;
+        const dx = cCx - fCx;
+        const dy = cCy - fCy;
+
+        // prepare starting transform so FAB appears at CTA position
+        fab.style.transition = 'none';
+        fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
+        fab.style.opacity = '0';
+        // force reflow
+        // eslint-disable-next-line no-unused-expressions
+        (fab as any).offsetWidth;
+
+        // animate to final
+        animating = true;
+        fab.classList.add('visible');
+        fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
+        fab.style.transform = 'none';
+        fab.style.opacity = '1';
+
+        const onEnd = () => {
+          animating = false;
+          fab.style.transition = '';
+          fab.removeEventListener('transitionend', onEnd);
+        };
+        fab.addEventListener('transitionend', onEnd);
+      };
+
+      const hideFab = () => {
+        if (animating) return;
+        fab.classList.remove('visible');
+        // ensure reset any inline transform
+        fab.style.transform = '';
+        fab.style.opacity = '';
+      };
+
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            fab.classList.remove('visible');
+            hideFab();
           } else {
-            fab.classList.add('visible');
+            showFabFromCta();
           }
         });
       }, { threshold: 0, rootMargin: '0px' });
 
       io.observe(cta);
 
-      // also consider the initial scroll position
-      if (!cta.getBoundingClientRect) return;
-      if (cta.getBoundingClientRect().bottom <= 0) fab.classList.add('visible');
+      // initial check
+      if (cta.getBoundingClientRect().bottom <= 0) showFabFromCta();
     } catch (err) {
-      // noop on error
-      // console.error(err);
+      // noop
     }
   });
 }
