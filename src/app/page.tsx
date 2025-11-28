@@ -312,10 +312,18 @@ if (typeof window !== 'undefined') {
         entries.forEach(e => {
           if (e.isIntersecting) {
             if (backBtn) backBtn.classList.remove('visible');
-            if (window.innerWidth >= 1024 && fab) hideFab();
+            if (fab) {
+              // ensure hidden immediately
+              fab.classList.remove('visible');
+              if (window.innerWidth >= 1024) hideFab();
+            }
           } else {
             if (backBtn) backBtn.classList.add('visible');
-            if (window.innerWidth >= 1024 && fab) showFabFromCta();
+            if (fab) {
+              // ensure visible immediately
+              fab.classList.add('visible');
+              if (window.innerWidth >= 1024) showFabFromCta();
+            }
           }
         });
       }, { threshold: 0, rootMargin: '0px' });
