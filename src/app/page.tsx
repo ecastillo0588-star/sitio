@@ -299,3 +299,36 @@ export default function Home() {
     </>
   );
 }
+
+// Show/hide WhatsApp FAB depending on whether the main CTA is visible.
+// This script runs on the client side; it observes the primary hero CTA and
+// toggles the `.visible` class on `.whatsapp-fab` when the CTA scrolls out of view.
+if (typeof window !== 'undefined') {
+  // run after a short delay so DOM nodes exist
+  window.addEventListener('load', () => {
+    try {
+      const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
+      const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
+      if (!cta || !fab || !('IntersectionObserver' in window)) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            fab.classList.remove('visible');
+          } else {
+            fab.classList.add('visible');
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px' });
+
+      io.observe(cta);
+
+      // also consider the initial scroll position
+      if (!cta.getBoundingClientRect) return;
+      if (cta.getBoundingClientRect().bottom <= 0) fab.classList.add('visible');
+    } catch (err) {
+      // noop on error
+      // console.error(err);
+    }
+  });
+}

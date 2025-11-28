@@ -72,6 +72,19 @@ a {
   .whatsapp-fab { right: 1rem !important; bottom: 1rem !important; width: 52px !important; height: 52px !important; }
 }
 
+/* Floating WhatsApp FAB visibility control */
+.whatsapp-fab {
+  transition: opacity .22s ease, transform .22s ease;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+.whatsapp-fab.visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
