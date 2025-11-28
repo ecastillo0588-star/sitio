@@ -307,6 +307,10 @@ if (typeof window !== 'undefined') {
       const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
       if (!cta || !fab || !('IntersectionObserver' in window)) return;
 
+      // Prepare handlers; on mobile these remain no-ops, on desktop they'll be assigned
+      let showFabFromCta: () => void = () => {};
+      let hideFab: () => void = () => {};
+
       // Observe CTA for controlling back-to-top and (on desktop) the FAB
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
@@ -333,7 +337,7 @@ if (typeof window !== 'undefined') {
       if (window.innerWidth >= 1024) {
         let animating = false;
 
-        const showFabFromCta = () => {
+        showFabFromCta = () => {
           if (animating) return;
           const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
 
@@ -377,7 +381,7 @@ if (typeof window !== 'undefined') {
           fab.addEventListener('transitionend', onEnd);
         };
 
-        const hideFab = () => {
+        hideFab = () => {
           if (animating) return;
           // animate back to CTA position then hide
           const cRect = cta.getBoundingClientRect();
