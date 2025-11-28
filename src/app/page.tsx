@@ -21,7 +21,9 @@ export default function Home() {
     const preloadGif = (img: HTMLImageElement) => {
       const gif = img.dataset.gif;
       if (!gif || img.dataset.preloaded === '1') return;
-      const loader = new Image();
+      // Use the browser global Image constructor. `Image` is imported from 'next/image'
+      // above, so reference `window.Image` to avoid the name collision.
+      const loader = typeof window !== 'undefined' ? new window.Image() : new (globalThis as any).Image();
       loader.src = gif;
       // mark as preloaded to avoid double-loading
       img.dataset.preloaded = '1';
