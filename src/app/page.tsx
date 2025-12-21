@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { defaultPlans } from "./plans-data";
 
-export default function Home() {
+      className="whatsapp-fab visible"
   useEffect(() => {
     // small entrance animation for hero content
     const t = setTimeout(() => {
@@ -325,7 +325,10 @@ export default function Home() {
             </div>
             <p style={{marginTop:"1.1rem", fontSize:".9rem", color:"var(--muted)"}}><strong>Sin costo de implementación.</strong> Pagás solo el abono mensual según el plan que elijas.<br /><strong>*Precios vigentes hasta diciembre de 2025.</strong></p>
             <p style={{marginTop:".6rem", fontSize:".95rem", color:"var(--ink)", background:"#f8fafc", border:"1px solid var(--line)", borderRadius:10, padding:".9rem 1rem"}}>
-              ¿Tenés un centro médico o son más de 10 profesionales? Consultanos por planes personalizados para tu equipo.
+              ¿Tenés un centro médico o son más de 10 profesionales?{' '}
+              <a href="https://wa.me/541138492392?text=Quiero%20hablar%20sobre%20planes%20personalizados%20para%20un%20centro%20o%20grupo%20grande" target="_blank" rel="noopener" style={{color:"#0f5132", fontWeight:700, textDecoration:"underline"}}>
+                Consultanos
+              </a> por planes personalizados para tu equipo.
             </p>
             <div style={{marginTop:"1.4rem", padding:"1rem 1.1rem", border:"1px solid var(--line)", borderRadius:12, background:"#f9fafb"}}>
               <h3 style={{marginTop:0, marginBottom:".75rem", fontSize:"1.05rem"}}>Comparativa rápida</h3>
