@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { defaultPlans } from "./plans-data";
 
-      className="whatsapp-fab visible"
+export default function HomePage() {
   useEffect(() => {
     // small entrance animation for hero content
     const t = setTimeout(() => {
@@ -57,126 +57,27 @@ import { defaultPlans } from "./plans-data";
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const setup = () => {
-      try {
-        const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
-        const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
-        const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
-        if (!cta || !fab || !('IntersectionObserver' in window)) return () => {};
+    const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
+    const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
+    const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
+    if (!cta || !fab || !backBtn || !('IntersectionObserver' in window)) return;
 
-        let backIo: IntersectionObserver | null = null;
-        let io: IntersectionObserver | null = null;
-        let animating = false;
-
-        const showFabFromCta = () => {
-          if (animating) return;
-          const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
-
-          if (alreadyFlown) {
-            fab.classList.add('visible');
-            return;
-          }
-
-          const cRect = cta.getBoundingClientRect();
-          const fRect = fab.getBoundingClientRect();
-          const cCx = cRect.left + cRect.width / 2;
-          const cCy = cRect.top + cRect.height / 2;
-          const fCx = fRect.left + fRect.width / 2;
-          const fCy = fRect.top + fRect.height / 2;
-          const dx = cCx - fCx;
-          const dy = cCy - fCy;
-
-          fab.style.transition = 'none';
-          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
-          fab.style.opacity = '0';
-          (fab as any).offsetWidth;
-
-          animating = true;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          fab.classList.remove('visible');
+          backBtn.classList.remove('visible');
+        } else {
           fab.classList.add('visible');
-          fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
-          fab.style.transform = 'none';
-          fab.style.opacity = '1';
-
-          const onEnd = () => {
-            animating = false;
-            try { sessionStorage.setItem('fabFlown', '1'); } catch (e) { /* ignore */ }
-            fab.style.transition = '';
-            fab.removeEventListener('transitionend', onEnd);
-          };
-          fab.addEventListener('transitionend', onEnd);
-        };
-
-        const hideFab = () => {
-          if (animating) return;
-          animating = true;
-          fab.style.transition = '';
-          fab.style.transform = '';
-          fab.style.opacity = '';
-          fab.classList.add('hiding');
-
-          const onAnimEnd = () => {
-            animating = false;
-            fab.classList.remove('hiding');
-            fab.classList.remove('visible');
-            fab.removeEventListener('animationend', onAnimEnd);
-          };
-          fab.addEventListener('animationend', onAnimEnd);
-        };
-
-        if (backBtn) {
-          backIo = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-              if (e.isIntersecting) {
-                backBtn.classList.remove('visible');
-                fab.classList.remove('visible');
-                hideFab();
-              } else {
-                backBtn.classList.add('visible');
-                showFabFromCta();
-              }
-            });
-          }, { threshold: 0, rootMargin: '0px' });
-          backIo.observe(cta);
+          backBtn.classList.add('visible');
         }
+      });
+    }, { threshold: 0, rootMargin: '0px' });
 
-        io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              hideFab();
-              backBtn?.classList.remove('visible');
-            } else {
-              showFabFromCta();
-              backBtn?.classList.add('visible');
-            }
-          });
-        }, { threshold: 0, rootMargin: '0px' });
-
-        io.observe(cta);
-
-        const cleanup = () => {
-          try { io && io.disconnect(); } catch (e) { /* ignore */ }
-          try { backIo && backIo.disconnect(); } catch (e) { /* ignore */ }
-        };
-
-        window.addEventListener('unload', cleanup);
-        return cleanup;
-      } catch (err) {
-        return () => {};
-      }
-    };
-
-    let teardown: (() => void) | null = null;
-
-    if (document.readyState === 'complete') {
-      teardown = setup();
-    } else {
-      const onLoad = () => { teardown = setup(); };
-      window.addEventListener('load', onLoad, { once: true });
-      return () => window.removeEventListener('load', onLoad);
-    }
+    io.observe(cta);
 
     return () => {
-      try { teardown && teardown(); } catch (e) { /* ignore */ }
+      try { io.disconnect(); } catch (e) { /* ignore */ }
     };
   }, []);
 
@@ -396,7 +297,7 @@ import { defaultPlans } from "./plans-data";
                 <span style={{width:28, height:28, borderRadius:999, background:"var(--brand)", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:".9rem", fontWeight:700, flexShrink:0}}>3</span>
                 <div>
                   <h3 style={{fontSize:"1.05rem", marginBottom:".25rem"}}>Lo dejamos funcionando</h3>
-                  <p>Configuramos consultorios, tipos de turno (primera vez, control, urgencias) y usuarios. La implementación tiene <strong>costo 0</strong> y te acompañamos en los primeros días para que vos y tu secretaria se acostumbren rápido.</p>
+                  <p>Configuramos consultorios, tipos de turno (primera vez, control, urgencias) y usuarios. La implementación tiene <strong>costo 0</strong> y te acompañamos en los primeros días para que vos y ts asistentes se acostumbren rápido.</p>
                 </div>
               </div>
             </div>
