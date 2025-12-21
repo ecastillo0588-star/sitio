@@ -297,7 +297,7 @@ export default function HomePage() {
                 <span style={{width:28, height:28, borderRadius:999, background:"var(--brand)", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:".9rem", fontWeight:700, flexShrink:0}}>3</span>
                 <div>
                   <h3 style={{fontSize:"1.05rem", marginBottom:".25rem"}}>Lo dejamos funcionando</h3>
-                  <p>Configuramos consultorios, tipos de turno (primera vez, control, urgencias) y usuarios. La implementación tiene <strong>costo 0</strong> y te acompañamos en los primeros días para que vos y ts asistentes se acostumbren rápido.</p>
+                  <p>Configuramos consultorios, tipos de turno (primera vez, control, urgencias) y usuarios. La implementación tiene <strong>costo 0</strong> y te acompañamos en los primeros días para que vos y tus asistentes se acostumbren rápido.</p>
                 </div>
               </div>
             </div>
@@ -312,7 +312,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer style={{borderTop:"1px solid var(--line)", background:"#111827", color:"#e5e7eb", padding:"1.2rem 0 1.6rem", marginTop:"2.2rem"}}>
         <div style={{textAlign:"center", fontSize:".9rem"}}>
-          <p>© {new Date().getFullYear()} eghealthsolutions.com — Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} eghealthsolutions.com.ar — Todos los derechos reservados.</p>
         </div>
       </footer>
 

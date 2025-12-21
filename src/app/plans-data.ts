@@ -39,10 +39,10 @@ export const defaultPlans: Plan[] = [
     maxProfessionals: 4,
     pricePerProText: "$20.000 por profesional usando las 4 licencias",
     features: [
+      "Acceso a toda la plataforma",
       "Agenda compartida para varios profesionales",
-      "Configuración de múltiples consultorios o sedes",
       "Perfiles diferenciados para secretaría y médicos",
-      "Estados y tipos de turno para todo el equipo",
+      "Agendas personalizables"
     ],
     description:
       "Para médicos que comparten secretaria o consultorio con otros colegas y necesitan ver todos los turnos en una sola agenda.",
@@ -60,11 +60,10 @@ export const defaultPlans: Plan[] = [
     maxProfessionals: 10,
     pricePerProText: "$15.000 por profesional con las 10 licencias incluidas",
     features: [
-      "Soporte para agendas en varios lugares de atención",
-      "Coordinación de múltiples profesionales",
+      "Servicio adaptado para distintas Especialidades",
+      "Coordinación de múltiples profesionales y derivaciones",
       "Tipos de turno personalizados y huecos para urgencias",
-      "Acompañamiento cercano al inicio",
-    ],
+          ],
     description:
       "Para médicos que atienden en varios lugares o con varios profesionales y necesitan coordinar muchas agendas sin usar mil planillas.",
     extrasHtml:
