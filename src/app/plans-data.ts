@@ -35,9 +35,9 @@ export const defaultPlans: Plan[] = [
   {
     id: "equipo",
     name: "Plan Equipo",
-    price: "$70.000 / mes",
+    price: "$80.000 / mes",
     maxProfessionals: 4,
-    pricePerProText: "$17.500 por profesional usando las 4 licencias",
+    pricePerProText: "$20.000 por profesional usando las 4 licencias",
     features: [
       "Agenda compartida para varios profesionales",
       "Configuración de múltiples consultorios o sedes",
@@ -47,7 +47,7 @@ export const defaultPlans: Plan[] = [
     description:
       "Para médicos que comparten secretaria o consultorio con otros colegas y necesitan ver todos los turnos en una sola agenda.",
     extrasHtml:
-      "Centro de atención adicional: <strong>$5.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes",
+      "Centro de atención adicional: <strong>$7.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes",
     whatsappUrl:
       "https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions.",
     badge: "Más elegido",
@@ -68,8 +68,9 @@ export const defaultPlans: Plan[] = [
     description:
       "Para médicos que atienden en varios lugares o con varios profesionales y necesitan coordinar muchas agendas sin usar mil planillas.",
     extrasHtml:
-      "Centro de atención adicional: <strong>$3.500</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes",
+      "Centro de atención adicional: <strong>$7.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes",
     whatsappUrl:
       "https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions.",
   },
 ];
+    

@@ -12,6 +12,8 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
 
+  // no-op
+
   useEffect(() => {
     // Preload demo GIFs in the background so they start instantly on hover.
     // Strategy: use IntersectionObserver to only preload gifs when their img enters viewport,
@@ -50,6 +52,132 @@ export default function Home() {
     // Fallback: preload all after small delay
     const fallbackTimer = setTimeout(() => imgs.forEach(preloadGif), 800);
     return () => clearTimeout(fallbackTimer);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const setup = () => {
+      try {
+        const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
+        const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
+        const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
+        if (!cta || !fab || !('IntersectionObserver' in window)) return () => {};
+
+        let backIo: IntersectionObserver | null = null;
+        let io: IntersectionObserver | null = null;
+        let animating = false;
+
+        const showFabFromCta = () => {
+          if (animating) return;
+          const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
+
+          if (alreadyFlown) {
+            fab.classList.add('visible');
+            return;
+          }
+
+          const cRect = cta.getBoundingClientRect();
+          const fRect = fab.getBoundingClientRect();
+          const cCx = cRect.left + cRect.width / 2;
+          const cCy = cRect.top + cRect.height / 2;
+          const fCx = fRect.left + fRect.width / 2;
+          const fCy = fRect.top + fRect.height / 2;
+          const dx = cCx - fCx;
+          const dy = cCy - fCy;
+
+          fab.style.transition = 'none';
+          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
+          fab.style.opacity = '0';
+          (fab as any).offsetWidth;
+
+          animating = true;
+          fab.classList.add('visible');
+          fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
+          fab.style.transform = 'none';
+          fab.style.opacity = '1';
+
+          const onEnd = () => {
+            animating = false;
+            try { sessionStorage.setItem('fabFlown', '1'); } catch (e) { /* ignore */ }
+            fab.style.transition = '';
+            fab.removeEventListener('transitionend', onEnd);
+          };
+          fab.addEventListener('transitionend', onEnd);
+        };
+
+        const hideFab = () => {
+          if (animating) return;
+          animating = true;
+          fab.style.transition = '';
+          fab.style.transform = '';
+          fab.style.opacity = '';
+          fab.classList.add('hiding');
+
+          const onAnimEnd = () => {
+            animating = false;
+            fab.classList.remove('hiding');
+            fab.classList.remove('visible');
+            fab.removeEventListener('animationend', onAnimEnd);
+          };
+          fab.addEventListener('animationend', onAnimEnd);
+        };
+
+        if (backBtn) {
+          backIo = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                backBtn.classList.remove('visible');
+                fab.classList.remove('visible');
+                hideFab();
+              } else {
+                backBtn.classList.add('visible');
+                showFabFromCta();
+              }
+            });
+          }, { threshold: 0, rootMargin: '0px' });
+          backIo.observe(cta);
+        }
+
+        io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              hideFab();
+              backBtn?.classList.remove('visible');
+            } else {
+              showFabFromCta();
+              backBtn?.classList.add('visible');
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+
+        io.observe(cta);
+
+        const cleanup = () => {
+          try { io && io.disconnect(); } catch (e) { /* ignore */ }
+          try { backIo && backIo.disconnect(); } catch (e) { /* ignore */ }
+        };
+
+        window.addEventListener('unload', cleanup);
+        return cleanup;
+      } catch (err) {
+        return () => {};
+      }
+    };
+
+    let teardown: (() => void) | null = null;
+
+    if (document.readyState === 'complete') {
+      teardown = setup();
+    } else {
+      const onLoad = () => { teardown = setup(); };
+      window.addEventListener('load', onLoad, { once: true });
+      return () => window.removeEventListener('load', onLoad);
+    }
+
+    return () => {
+      try { teardown && teardown(); } catch (e) { /* ignore */ }
+    };
   }, []);
 
   return (
@@ -309,131 +437,3 @@ export default function Home() {
   );
 }
 
-// Show/hide WhatsApp FAB depending on whether the main CTA is visible.
-// This script runs on the client side; it observes the primary hero CTA and
-// toggles the `.visible` class on `.whatsapp-fab` when the CTA scrolls out of view.
-if (typeof window !== 'undefined') {
-  // run after load so DOM nodes exist
-  window.addEventListener('load', () => {
-    try {
-      const cta = document.querySelector('.hero-cta.primary') as HTMLElement | null;
-      const fab = document.querySelector('.whatsapp-fab') as HTMLElement | null;
-      const backBtn = document.querySelector('.back-to-top') as HTMLElement | null;
-      if (!cta || !fab || !('IntersectionObserver' in window)) return;
-
-      // BACK-TO-TOP: observe CTA for all sizes (show when CTA not visible)
-      let backIo: IntersectionObserver | null = null;
-      if (backBtn) {
-        backIo = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              backBtn.classList.remove('visible');
-              if (fab) fab.classList.remove('visible');
-            } else {
-              backBtn.classList.add('visible');
-              if (fab) fab.classList.add('visible');
-            }
-          });
-        }, { threshold: 0, rootMargin: '0px' });
-        backIo.observe(cta);
-      }
-
-      // FAB: only desktop behavior
-      if (window.innerWidth >= 1024) {
-        let animating = false;
-
-        const showFabFromCta = () => {
-          if (animating) return;
-          const alreadyFlown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('fabFlown') === '1';
-
-          if (alreadyFlown) {
-            // Skip fly animation on subsequent shows this session — just reveal
-            fab.classList.add('visible');
-            return;
-          }
-
-          // compute centers for fly animation
-          const cRect = cta.getBoundingClientRect();
-          const fRect = fab.getBoundingClientRect();
-          const cCx = cRect.left + cRect.width / 2;
-          const cCy = cRect.top + cRect.height / 2;
-          const fCx = fRect.left + fRect.width / 2;
-          const fCy = fRect.top + fRect.height / 2;
-          const dx = cCx - fCx;
-          const dy = cCy - fCy;
-
-          // prepare starting transform so FAB appears at CTA position
-          fab.style.transition = 'none';
-          fab.style.transform = `translate(${dx}px, ${dy}px) scale(.92)`;
-          fab.style.opacity = '0';
-          // force reflow
-          // eslint-disable-next-line no-unused-expressions
-          (fab as any).offsetWidth;
-
-          // animate to final
-          animating = true;
-          fab.classList.add('visible');
-          fab.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1), opacity .28s ease';
-          fab.style.transform = 'none';
-          fab.style.opacity = '1';
-
-          const onEnd = () => {
-            animating = false;
-            try { sessionStorage.setItem('fabFlown', '1'); } catch (e) { /* ignore */ }
-            fab.style.transition = '';
-            fab.removeEventListener('transitionend', onEnd);
-          };
-          fab.addEventListener('transitionend', onEnd);
-        };
-
-        const hideFab = () => {
-          if (animating) return;
-          // Use the same keyframes as show but in reverse so disappearance matches appearance.
-          animating = true;
-
-          // Clear inline transitions/transforms to let CSS animation drive the hide.
-          fab.style.transition = '';
-          fab.style.transform = '';
-          fab.style.opacity = '';
-
-          // Add hiding class which runs the reverse animation, then remove visible when done.
-          fab.classList.add('hiding');
-
-          const onAnimEnd = () => {
-            animating = false;
-            fab.classList.remove('hiding');
-            fab.classList.remove('visible');
-            fab.removeEventListener('animationend', onAnimEnd);
-          };
-          fab.addEventListener('animationend', onAnimEnd);
-        };
-
-        // Track whether the hero CTA is visible. IntersectionObserver updates this.
-        let ctaVisible = cta.getBoundingClientRect().bottom > 0 && cta.getBoundingClientRect().top < window.innerHeight;
-
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            // track visibility state but let backIo perform the actual toggling
-            ctaVisible = e.isIntersecting;
-          });
-        }, { threshold: 0, rootMargin: '0px' });
-
-        io.observe(cta);
-
-        // The IntersectionObserver controls visibility for both buttons: when the CTA is
-        // not visible we show both the back-to-top and the WhatsApp FAB; when the CTA
-        // becomes visible we hide them. This mirrors the behavior of the "subir" button.
-        if (!ctaVisible) showFabFromCta();
-
-        // cleanup when navigating away
-        const cleanup = () => {
-          try { io.disconnect(); } catch (e) { /* ignore */ }
-          try { backIo && (backIo as IntersectionObserver).disconnect(); } catch (e) { /* ignore */ }
-        };
-        window.addEventListener('unload', cleanup);
-      }
-    } catch (err) {
-      // noop
-    }
-  });
-}
