@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
+import { defaultPlans } from "./plans-data";
 
 export default function Home() {
   useEffect(() => {
@@ -144,63 +145,76 @@ export default function Home() {
           <div style={{maxWidth:1120, margin:"0 auto", padding:"0 1.5rem"}}>
             <h2 style={{fontSize:"1.8rem", marginBottom:".6rem"}}>Planes y condiciones comerciales</h2>
             <div style={{display:"grid", gap:"1.7rem", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))"}}>
-              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column", position:"relative"}}>
-                <h3>Plan Consultorio</h3>
-                <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$25.000 / mes</p>
-                <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
-                  <li>Agenda online para tus turnos</li>
-                  <li>1 centro de atención incluido</li>
-                  <li>1 asistente administrativo incluido</li>
-                  <li>Estados y tipos de turno (nuevo, control, urgencia)</li>
-                </ul>
-                <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que atienden en su propio consultorio y quieren dejar atrás las hojas de cálculo y los cuadernos, sin meterse en sistemas complicados.</p>
-                <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$7.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
-              </div>
-              <div style={{background:"var(--card)", borderRadius:14, border:"2px solid var(--brand-2)", boxShadow:"0 12px 32px rgba(0,0,0,.12)", padding:"1.4rem 1.45rem", display:"flex", flexDirection:"column", position:"relative"}}>
-                <div style={{position:"absolute", top:12, right:12, fontSize:".7rem", textTransform:"uppercase", letterSpacing:".04em", background:"#f4f1ff", borderRadius:999, padding:".15rem .5rem", border:"1px solid var(--line)"}}>Más elegido</div>
-                <h3>Plan Equipo</h3>
-                <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$70.000 / mes</p>
-                <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
-                  <li>Agenda compartida para varios profesionales</li>
-                  <li>Configuración de múltiples consultorios o sedes</li>
-                  <li>Perfiles diferenciados para secretaría y médicos</li>
-                  <li>Estados y tipos de turno para todo el equipo</li>
-                </ul>
-                <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que comparten secretaria o consultorio con otros colegas y necesitan ver todos los turnos en una sola agenda.</p>
-                <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$5.000</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
-              </div>
-              <div style={{background:"var(--card)", borderRadius:14, border:"1px solid var(--line)", padding:"1.4rem 1.45rem", boxShadow:"0 8px 24px rgba(0,0,0,.04)", display:"flex", flexDirection:"column", position:"relative"}}>
-                <h3>Plan Red de Profesionales</h3>
-                <p style={{fontWeight:700, margin:".45rem 0 .8rem"}}>$150.000 / mes</p>
-                <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
-                  <li>Soporte para agendas en varios lugares de atención</li>
-                  <li>Coordinación de múltiples profesionales</li>
-                  <li>Tipos de turno personalizados y huecos para urgencias</li>
-                  <li>Acompañamiento cercano al inicio</li>
-                </ul>
-                <p style={{fontSize:".86rem", color:"var(--muted)"}}>Para médicos que atienden en varios lugares o con varios profesionales y necesitan coordinar muchas agendas sin usar mil planillas.</p>
-                <p style={{fontSize:".9rem", color:"var(--muted)"}}>Centro de atención adicional: <strong>$3.500</strong> / mes<br />Asistente administrativo adicional: <strong>$1.500</strong> / mes</p>
-                <a href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions." target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
-                    <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
-                    <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
-                  </svg>
-                </a>
-              </div>
+              {defaultPlans.map((plan) => {
+                const highlight = plan.highlight;
+                return (
+                  <div
+                    key={plan.id}
+                    style={{
+                      background:"var(--card)",
+                      borderRadius:14,
+                      border: highlight ? "2px solid var(--brand-2)" : "1px solid var(--line)",
+                      padding:"1.4rem 1.45rem",
+                      boxShadow: highlight ? "0 12px 32px rgba(0,0,0,.12)" : "0 8px 24px rgba(0,0,0,.04)",
+                      display:"flex",
+                      flexDirection:"column",
+                      position:"relative"
+                    }}
+                  >
+                    {plan.badge && (
+                      <div style={{position:"absolute", top:12, right:12, fontSize:".7rem", textTransform:"uppercase", letterSpacing:".04em", background:"#f4f1ff", borderRadius:999, padding:".15rem .5rem", border:"1px solid var(--line)"}}>
+                        {plan.badge}
+                      </div>
+                    )}
+                    <h3>{plan.name}</h3>
+                    <div style={{display:"flex", alignItems:"center", gap:".5rem", marginTop:".2rem"}}>
+                      {typeof plan.maxProfessionals === "number" && (
+                        <span style={{fontSize:".8rem", background:"#eef2ff", color:"#4338ca", padding:".25rem .55rem", borderRadius:999, border:"1px solid var(--line)"}}>
+                          Incluye hasta {plan.maxProfessionals} profesionales
+                        </span>
+                      )}
+                    </div>
+                    <p style={{fontWeight:700, margin:".45rem 0 .35rem"}}>{plan.price}</p>
+                    {plan.pricePerProText && (
+                      <p style={{margin:"0 0 .65rem", fontSize:".9rem", color:"var(--muted)"}}>{plan.pricePerProText}</p>
+                    )}
+                    <ul style={{listStyle:"none", padding:0, marginBottom: ".9rem"}}>
+                      {plan.features.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                    <p style={{fontSize:".86rem", color:"var(--muted)"}}>{plan.description}</p>
+                    <p style={{fontSize:".9rem", color:"var(--muted)"}} dangerouslySetInnerHTML={{ __html: plan.extrasHtml }} />
+                    <a href={plan.whatsappUrl} target="_blank" rel="noopener" style={{position:"absolute", bottom:10, right:10, width:32, height:32, borderRadius:999, background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none"}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} aria-hidden="true" focusable="false">
+                        <path fill="#ffffff" d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.94 11.94 0 0 0 3.48 3.48 11.94 11.94 0 0 0 .5 12c0 2.11.55 4.15 1.6 5.95L.5 23l4.67-1.22A11.94 11.94 0 0 0 12 23.5a11.94 11.94 0 0 0 8.52-3.48A11.94 11.94 0 0 0 23.5 12a11.94 11.94 0 0 0-3-8.52z"/>
+                        <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
+                      </svg>
+                    </a>
+                  </div>
+                );
+              })}
             </div>
             <p style={{marginTop:"1.1rem", fontSize:".9rem", color:"var(--muted)"}}><strong>Sin costo de implementación.</strong> Pagás solo el abono mensual según el plan que elijas.<br /><strong>*Precios vigentes hasta diciembre de 2025.</strong></p>
+            <div style={{marginTop:"1.4rem", padding:"1rem 1.1rem", border:"1px solid var(--line)", borderRadius:12, background:"#f9fafb"}}>
+              <h3 style={{marginTop:0, marginBottom:".75rem", fontSize:"1.05rem"}}>Comparativa rápida</h3>
+              <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:".75rem"}}>
+                {defaultPlans.map((plan) => (
+                  <div key={`compare-${plan.id}`} style={{padding:".8rem", border:"1px solid var(--line)", borderRadius:10, background:"#fff"}}>
+                    <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:".35rem"}}>
+                      <span style={{fontWeight:700}}>{plan.name}</span>
+                      {plan.badge && <span style={{fontSize:".75rem", color:"var(--muted)"}}>{plan.badge}</span>}
+                    </div>
+                    <p style={{margin:"0 0 .35rem", color:"var(--muted)", fontSize:".9rem"}}>
+                      {typeof plan.maxProfessionals === "number" ? `Incluye hasta ${plan.maxProfessionals} profesionales` : "Escala flexible"}
+                    </p>
+                    {plan.pricePerProText && (
+                      <p style={{margin:"0", fontSize:".9rem", color:"#065f46", fontWeight:600}}>{plan.pricePerProText}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
