@@ -1,3 +1,9 @@
+# *
 User-agent: *
-Disallow:
-Sitemap: /sitemap.xml
+Allow: /
+
+# Host
+Host: https://eghealthsolutions.com.ar
+
+# Sitemaps
+Sitemap: https://eghealthsolutions.com.ar/sitemap.xml
