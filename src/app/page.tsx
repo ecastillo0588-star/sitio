@@ -113,7 +113,7 @@ export default function HomePage() {
                 ¿Seguís manejando tus turnos en hojas de cálculo,<br />cuadernos o chats sueltos?
               </h1>
               <p className="hero-sub" style={{fontSize:"1rem", color:"var(--muted)", maxWidth:580, marginBottom:"1rem"}}>
-                La nueva forma de gestionar tus turnos en un solo lugar, con seguridad y privacidad. Permite diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
+                LLEGÓ EGHEALTH: la nueva forma de gestionar tus turnos en un solo lugar, con seguridad y privacidad. Permite diferenciar fácilmente entre pacientes nuevos, controles y turnos de urgencia.
               </p>
               <div className="hero-ctas" style={{display:"flex", gap:".75rem", margin:"1.4rem 0 1.7rem"}}>
                 <a className="hero-cta primary" href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions" target="_blank" rel="noopener" style={{background:"#25D366", color:"#fff", borderRadius:999, padding:".55rem 1.2rem", fontWeight:600, textDecoration:"none"}}>Escribir por WhatsApp</a>
