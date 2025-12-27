@@ -1,0 +1,11 @@
+{
+  "slug": "gabriela-castillo",
+  "profesionalId": "092fa577-d353-47d1-b30c-d819fac0df64",
+  "name": "Gabriela Castillo",
+  "heroImage": "/profesionales/gabriela-castillo/hero-gabriela-castillo.jpg",
+  "location": "San Luis, Argentina",
+  "virtual": true,
+  "theme": {
+    "accent": "#5937a8"
+  }
+}
