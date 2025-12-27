@@ -181,7 +181,7 @@ export default function GabrielaCastilloPage() {
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
-              <span className="eyebrow">Médica General</span>
+              <span className="eyebrow">Médica General y Familiar</span>
               <h1>Dra. {profesionalNombre}</h1>
               <p className="lead">
                 Atención médica integral con más de 15 años de experiencia. Enfoque humano,
