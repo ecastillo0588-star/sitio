@@ -97,7 +97,8 @@ export default function GabrielaCastilloPage() {
   }, [heroNovedades.length, isPaused])
 
   // Chat availability check: simple network ping with timeout.
-  const iframeBase = process.env.NEXT_PUBLIC_WIDGET_URL ?? 'http://localhost:3000/paciente/chatbot-widget'
+  const iframeBase =
+    process.env.NEXT_PUBLIC_WIDGET_URL ?? 'https://eghealthsolutions.vercel.app/paciente/chatbot-widget'
   const iframeSrc = `${iframeBase}?profesionalId=${profesionalId}&profesionalNombre=${encodeURIComponent(
     profesionalNombre
   )}`

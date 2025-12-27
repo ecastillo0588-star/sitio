@@ -451,7 +451,10 @@ export default function HomePage() {
             </button>
             {/* iframe del Chatbot */}
             <iframe
-              src={process.env.NEXT_PUBLIC_WIDGET_URL ?? 'http://localhost:3000/paciente/chatbot-widget'}
+              src={
+                process.env.NEXT_PUBLIC_WIDGET_URL ??
+                'https://eghealthsolutions.vercel.app/paciente/chatbot-widget'
+              }
               style={{
                 flex: 1,
                 border: "none",
