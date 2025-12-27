@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EG Health Solutions — Agenda de turnos para médicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Agenda online para médicos. Turnos de pacientes nuevos, controles y urgencias en un solo lugar, sin hojas de cálculo ni chats sueltos."
+  />
+  <link rel="stylesheet" href="./site.css" />
+</head>
+<body>
+  <!-- ENCABEZADO -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="./logo eg.png" alt="EG Health Solutions" class="brand-logo-img" />
+        <div class="brand-text">
+          <span class="brand-name">EG Health Solutions</span>
+          <span class="brand-tagline">Agenda de turnos para médicos</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#presentacion">Inicio</a>
+        <a href="#vistas">El sistema</a>
+        <a href="#planes">Planes</a>
+        <a href="#empezar">Cómo empezar</a>
+      </nav>
+
+      <a
+        class="btn secondary small"
+        href="https://eghealthsolutions.vercel.app/"
+        target="_blank"
+        rel="noopener"
+      >
+        Ir al sistema
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. PRESENTACIÓN -->
+    <section id="presentacion" class="hero">
+      <div class="container hero-inner">
+        <!-- Columna izquierda: problema + solución -->
+        <div class="hero-copy">
+          <p class="pill">
+            Agenda online para médicos y consultorios
+          </p>
+          <h1>
+            ¿Seguís manejando tus turnos en hojas de cálculo,<br />
+            cuadernos o chats sueltos?
+          </h1>
+          <p class="hero-sub">
+            EG Health Solutions ordena tus turnos en un solo lugar y te deja diferenciar fácilmente
+            entre pacientes nuevos, controles y turnos de urgencia.
+          </p>
+          <p class="hero-sub">
+            Más tiempo para los pacientes nuevos, turnos de control más cortos y huecos para
+            urgencias sin encimar la agenda.
+          </p>
+
+          <div class="hero-ctas">
+            <a
+              href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
+              class="btn btn-whatsapp"
+              target="_blank"
+              rel="noopener"
+            >
+              Escribir por WhatsApp
+            </a>
+            <a href="#vistas" class="btn ghost">Mirá cómo funciona el sistema</a>
+          </div>
+
+          <div class="hero-kpi">
+            <div>
+              <span class="kpi-label">Ideal para</span>
+              <span class="kpi-value">Médicos que atienden en uno o varios consultorios</span>
+            </div>
+            <div>
+              <span class="kpi-label">Cómo te ayuda</span>
+              <span class="kpi-value">Menos planillas, menos chats, más claridad en tu día</span>
+            </div>
+          </div>
+
+          <div class="hero-chips">
+            <span class="chip mini">Implementación sin costo</span>
+            <span class="chip mini">Listo para usar en pocos días</span>
+            <span class="chip mini">Abono mensual accesible</span>
+          </div>
+        </div>
+
+        <!-- Columna derecha: diferenciales -->
+        <aside class="hero-benefits">
+          <h3>Por qué te sirve usar EG Health Solutions</h3>
+          <ul>
+            <li>
+              <strong>Agenda pensada para la consulta real:</strong>
+              primera vez, control, estudios, urgencias. Cada tipo de turno puede tener su propio tiempo.
+            </li>
+            <li>
+              <strong>Huecos para urgencias sin caos:</strong>
+              reservás espacios para “turnos en el acto” y los vas asignando según cómo viene el día.
+            </li>
+            <li>
+              <strong>Todo en una sola vista:</strong>
+              ves consultorios, horarios y estados de cada turno en un panel simple.
+            </li>
+            <li>
+              <strong>Sin costo de implementación:</strong>
+              solo pagás el abono mensual; te ayudamos a dejarla funcionando.
+            </li>
+          </ul>
+          <p class="hero-note">
+            Ideal si hoy organizás tus turnos con hojas de cálculo tipo Excel, cuadernos
+            o varios grupos de WhatsApp y querés algo más ordenado sin complicarte con la tecnología.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. VISTAS DEL SISTEMA -->
+    <section id="vistas" class="section alt">
+      <div class="container">
+        <h2>El sistema en la práctica</h2>
+        <p class="section-lead">
+          Así se ve tu día de consultorio en EG Health Solutions: pacientes nuevos, controles y turnos
+          de urgencia ordenados en una sola agenda. Pasá el mouse por cada vista para ver cómo funciona
+          o ampliá la imagen para verla mejor.
+        </p>
+
+        <div class="grid cards-2 demo-grid">
+          <!-- GIF 1: Vista inicial / panel general -->
+          <article class="card">
+            <h3>Panel de turnos por estado</h3>
+            <p class="muted">
+              Ves tus turnos del día agrupados por estado:
+              <strong>por llegar</strong>, <strong>en espera</strong>,
+              <strong>en atención</strong> y <strong>atendidos</strong>.
+              También distinguís qué turnos son primera consulta, control o urgencias
+              para saber dónde necesitás más tiempo.
+            </p>
+
+            <div class="demo-thumb">
+              <img
+                src="./vistainicio-static.png"
+                data-static="./vistainicio-static.png"
+                data-gif="./vistainicio-ezgif.com-video-to-gif-converter.gif"
+                alt="Vista del panel de turnos por estado en EG Health Solutions"
+                class="demo-gif-img"
+              />
+              <div class="demo-thumb-label">
+                ▶ Pasá el mouse para ver la animación
+              </div>
+              <button
+                type="button"
+                class="demo-expand"
+                aria-label="Ampliar vista del sistema"
+              >
+                ⤢
+              </button>
+            </div>
+          </article>
+
+          <!-- GIF 2: Alta y seguimiento de turnos -->
+          <article class="card">
+            <h3>Asignación y seguimiento de turnos</h3>
+            <p class="muted">
+              Tu secretaria elige el tipo de turno (nuevo, control, urgencia), el consultorio y el horario.
+              El sistema respeta la duración de cada tipo de turno y te ayuda a acomodar “turnos en el acto”
+              sin encimar pacientes.
+            </p>
+
+            <div class="demo-thumb">
+              <img
+                src="./videoturnos-static.png"
+                data-static="./videoturnos-static.png"
+                data-gif="./videoturnos-ezgif.com-video-to-gif-converter.gif"
+                alt="Asignación y actualización de turnos en EG Health Solutions"
+                class="demo-gif-img"
+              />
+              <div class="demo-thumb-label">
+                ▶ Pasá el mouse para ver la animación
+              </div>
+              <button
+                type="button"
+                class="demo-expand"
+                aria-label="Ampliar vista del sistema"
+              >
+                ⤢
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL PARA AMPLIAR DEMOS -->
+    <div class="demo-modal" id="demo-modal" aria-hidden="true">
+      <div class="demo-modal-backdrop"></div>
+      <div class="demo-modal-content">
+        <button
+          type="button"
+          class="demo-modal-close"
+          aria-label="Cerrar vista ampliada"
+        >
+          ✕
+        </button>
+        <img src="" alt="" id="demo-modal-img" />
+        <p id="demo-modal-caption"></p>
+      </div>
+    </div>
+
+    <!-- 3. PLANES -->
+    <section id="planes" class="section">
+      <div class="container">
+        <h2>Planes y condiciones comerciales</h2>
+        <p class="section-lead">
+          Los planes están pensados para médicos que atienden en uno o varios consultorios y quieren una
+          agenda clara, con tipos de turno diferenciados y espacio para urgencias, sin gastar de más.
+          No hay costo de implementación: solo pagás el abono mensual.
+        </p>
+
+        <div class="grid cards-3 pricing">
+          <!-- Plan 1 -->
+          <article class="card">
+            <h3>Plan Consultorio</h3>
+            <p class="price">$25.000 / mes</p>
+            <ul class="features">
+              <li>Agenda online para tus turnos</li>
+              <li>1 centro de atención incluido</li>
+              <li>1 asistente administrativo incluido</li>
+              <li>Estados y tipos de turno (nuevo, control, urgencia)</li>
+            </ul>
+            <p class="hint">
+              Para médicos que atienden en su propio consultorio y quieren dejar atrás las hojas de cálculo
+              y los cuadernos, sin meterse en sistemas complicados.
+            </p>
+            <p class="muted">
+              Centro de atención adicional: <strong>$7.000</strong> / mes<br />
+              Asistente administrativo adicional: <strong>$1.500</strong> / mes
+            </p>
+            <a
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Consultorio%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
+              target="_blank"
+              rel="noopener"
+            >
+              Consultar
+            </a>
+          </article>
+
+          <!-- Plan 2 -->
+          <article class="card destacado">
+            <div class="badge">Más elegido</div>
+            <h3>Plan Equipo</h3>
+            <p class="price">$70.000 / mes</p>
+            <ul class="features">
+              <li>Agenda compartida para varios profesionales</li>
+              <li>Configuración de múltiples consultorios o sedes</li>
+              <li>Perfiles diferenciados para secretaría y médicos</li>
+              <li>Estados y tipos de turno para todo el equipo</li>
+            </ul>
+            <p class="hint">
+              Para médicos que comparten secretaria o consultorio con otros colegas
+              y necesitan ver todos los turnos en una sola agenda.
+            </p>
+            <p class="muted">
+              Centro de atención adicional: <strong>$5.000</strong> / mes<br />
+              Asistente administrativo adicional: <strong>$1.500</strong> / mes
+            </p>
+            <a
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Equipo%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
+              target="_blank"
+              rel="noopener"
+            >
+              Consultar
+            </a>
+          </article>
+
+          <!-- Plan 3 -->
+          <article class="card">
+            <h3>Plan Red de Profesionales</h3>
+            <p class="price">$150.000 / mes</p>
+            <ul class="features">
+              <li>Soporte para agendas en varios lugares de atención</li>
+              <li>Coordinación de múltiples profesionales</li>
+              <li>Tipos de turno personalizados y huecos para urgencias</li>
+              <li>Acompañamiento cercano al inicio</li>
+            </ul>
+            <p class="hint">
+              Para médicos que atienden en varios lugares o con varios profesionales
+              y necesitan coordinar muchas agendas sin usar mil planillas.
+            </p>
+            <p class="muted">
+              Centro de atención adicional: <strong>$3.500</strong> / mes<br />
+              Asistente administrativo adicional: <strong>$1.500</strong> / mes
+            </p>
+            <a
+              href="https://wa.me/541138492392?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Plan%20Red%20de%20Profesionales%20de%20EG%20Health%20Solutions."
+              class="btn btn-whatsapp full"
+              target="_blank"
+              rel="noopener"
+            >
+              Consultar
+            </a>
+          </article>
+        </div>
+
+        <p class="note">
+          Si tenés un centro médico con más profesionales,
+          <a
+            href="https://wa.me/541138492392?text=Hola%2C%20tengo%20un%20centro%20m%C3%A9dico%20con%20m%C3%A1s%20profesionales%20y%20quiero%20consultar%20por%20planes%20a%20medida%20de%20EG%20Health%20Solutions."
+            target="_blank"
+            rel="noopener"
+          >
+            consultá
+          </a>
+          por nuestros planes a medida.
+        </p>
+        <p class="note">
+          <strong>Sin costo de implementación.</strong> Pagás solo el abono mensual según el plan que elijas.<br />
+          <strong>*Precios vigentes hasta diciembre de 2025.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- 3.bis SEGURIDAD Y PRIVACIDAD (APARTADO DISCRETO) -->
+    <section id="seguridad" class="section">
+      <div class="container">
+        <h2>Seguridad y privacidad de tus datos</h2>
+        <p class="section-lead">
+          Sabemos que la información de tus pacientes es sensible. EG Health Solutions está pensado
+          para que solo las personas autorizadas puedan ver y manejar los turnos de tu consultorio o centro.
+        </p>
+
+        <div class="grid cards-3">
+          <article class="card">
+            <h3>Accesos por usuario</h3>
+            <p>
+              Cada persona tiene su propio usuario y contraseña. Podés diferenciar entre médicos y secretaría
+              y limitar quién puede ver o modificar los turnos.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Datos separados por consultorio</h3>
+            <p>
+              La información de tu consultorio o centro se mantiene aislada de otros. Solo tu equipo ve los
+              turnos de tus pacientes.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Conexión segura</h3>
+            <p>
+              El sistema funciona sobre una conexión cifrada (HTTPS), la misma tecnología que usan los homebankings
+              y las principales plataformas de servicios online.
+            </p>
+          </article>
+        </div>
+
+        <p class="note">
+          Si tenés dudas sobre cómo cuidamos la información de tu consultorio o centro,
+          podés escribirnos por WhatsApp y te contamos más en detalle.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. CÓMO EMPEZAR -->
+    <section id="empezar" class="section alt">
+      <div class="container">
+        <h2>Cómo empezar sin complicarte</h2>
+        <p class="section-lead">
+          Empezar a usar EG Health Solutions es simple y no frena tu consulta. Hablamos por WhatsApp
+          y armamos todo juntos.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div>
+              <h3>Nos escribís por WhatsApp</h3>
+              <p>
+                Nos contás dónde atendés, cuántos días y cómo manejan hoy los turnos
+                (hojas de cálculo, cuadernos, grupos de WhatsApp, etc.).
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div>
+              <h3>Te mostramos el sistema</h3>
+              <p>
+                Hacemos una demo remota y vemos juntos cómo se adapta a tu forma de trabajo:
+                tipos de turno, duración, consultorios y horarios.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div>
+              <h3>Lo dejamos funcionando</h3>
+              <p>
+                Configuramos consultorios, tipos de turno (primera vez, control, urgencias) y usuarios.
+                La implementación tiene <strong>costo 0</strong> y te acompañamos en los primeros días
+                para que vos y tu secretaria se acostumbren rápido.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.8rem;">
+          <p class="section-lead">
+            ¿Querés ver cómo quedaría tu agenda armada en EG Health Solutions?
+          </p>
+          <a
+            href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            Iniciar contacto por WhatsApp
+          </a>
+          <p class="muted" style="margin-top:.6rem;">
+            Mensaje sugerido: <em>“Quiero averiguar más sobre EG Health Solutions para la gestión de mis turnos.”</em>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> eghealthsolutions.com — Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a
+    href="https://wa.me/541138492392?text=Quiero%20averiguar%20mas%20sobre%20EG%20Health%20Solutions"
+    class="whatsapp-fab"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+  >
+    💬
+  </a>
+
+  <script>
+    // Año en el pie de página
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // GIFs: miniatura fija + hover + modal
+    document.querySelectorAll(".demo-thumb").forEach(function (wrapper) {
+      var img = wrapper.querySelector(".demo-gif-img");
+      var staticSrc = img.dataset.static || img.src;
+      var gifSrc = img.dataset.gif;
+
+      if (!gifSrc) return;
+
+      // miniatura fija por defecto
+      img.src = staticSrc;
+
+      wrapper.addEventListener("mouseenter", function () {
+        img.src = gifSrc;
+      });
+
+      wrapper.addEventListener("mouseleave", function () {
+        img.src = staticSrc;
+      });
+
+      // botón para ampliar en modal
+      var expandBtn = wrapper.querySelector(".demo-expand");
+      if (expandBtn) {
+        expandBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var modal = document.getElementById("demo-modal");
+          var modalImg = document.getElementById("demo-modal-img");
+          var modalCaption = document.getElementById("demo-modal-caption");
+
+          modalImg.src = gifSrc;
+          modalImg.alt = img.alt;
+          modalCaption.textContent = img.alt;
+
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      }
+    });
+
+    // cerrar modal (click en fondo o botón cerrar)
+    (function () {
+      var modal = document.getElementById("demo-modal");
+      if (!modal) return;
+
+      modal.addEventListener("click", function (e) {
+        if (
+          e.target.classList.contains("demo-modal-backdrop") ||
+          e.target.classList.contains("demo-modal-close")
+        ) {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.getElementById("demo-modal-img").src = "";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,9 +1,11 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { defaultPlans } from "./plans-data";
 
 export default function HomePage() {
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+
   useEffect(() => {
     // small entrance animation for hero content
     const t = setTimeout(() => {
@@ -330,6 +332,56 @@ export default function HomePage() {
           <path fill="#25D366" d="M17.5 14.1c-.3-.15-1.75-.85-2.02-.95-.27-.1-.46-.15-.66.15-.18.27-.72.95-.88 1.14-.16.18-.32.2-.6.07-.27-.13-1.08-.4-2.06-1.27-.76-.66-1.27-1.48-1.42-1.75-.15-.27-.02-.42.12-.56.12-.12.27-.32.4-.48.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.52l-.56-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.95 4.68 4.02 3.25 1.25 3.25.83 3.83.78.58-.05 1.75-.7 2-1.37.25-.67.25-1.24.18-1.37-.07-.13-.27-.18-.58-.33z"/>
         </svg>
       </a>
+
+      {/* Chatbot Floating Button */}
+      <button
+        onClick={() => setChatbotOpen(true)}
+        aria-label="Abrir chatbot"
+        className="chatbot-fab"
+        style={{
+          position: "fixed",
+          bottom: 90,
+          right: 20,
+          width: 56,
+          height: 56,
+          borderRadius: "50%",
+          background: "#5a3e9a",
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 12px rgba(90, 62, 154, 0.4)",
+          zIndex: 40,
+          transition: "all 0.3s ease"
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.1)";
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 16px rgba(90, 62, 154, 0.6)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 12px rgba(90, 62, 154, 0.4)";
+        }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={28} height={28} fill="white" aria-hidden="true" focusable="false">
+          {/* Robot head */}
+          <rect x="3" y="4" width="18" height="12" rx="2" fill="white"/>
+          {/* Eyes */}
+          <circle cx="8" cy="8" r="1.5" fill="#5a3e9a"/>
+          <circle cx="16" cy="8" r="1.5" fill="#5a3e9a"/>
+          {/* Mouth */}
+          <path d="M 8 11 Q 12 13 16 11" stroke="#5a3e9a" strokeWidth="1" fill="none" strokeLinecap="round"/>
+          {/* Antenna */}
+          <line x1="6" y1="2" x2="6" y2="0" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="6" cy="0" r="0.8" fill="white"/>
+          <line x1="18" y1="2" x2="18" y2="0" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="18" cy="0" r="0.8" fill="white"/>
+          {/* Body */}
+          <rect x="5" y="16" width="3" height="4" rx="1" fill="white"/>
+          <rect x="16" y="16" width="3" height="4" rx="1" fill="white"/>
+        </svg>
+      </button>
       <a
         href="#top"
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -340,6 +392,93 @@ export default function HomePage() {
           <path fill="currentColor" d="M12 6l-6 6h4v6h4v-6h4z" />
         </svg>
       </a>
+
+      {/* Chatbot Modal */}
+      {chatbotOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0, 0, 0, 0.3)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            zIndex: 50,
+            padding: "0"
+          }}
+          onClick={() => setChatbotOpen(false)}
+        >
+          <div
+            style={{
+              background: "white",
+              borderRadius: "16px 0 0 16px",
+              width: "100%",
+              maxWidth: 420,
+              height: "100vh",
+              boxShadow: "0 5px 40px rgba(0, 0, 0, 0.16)",
+              display: "flex",
+              flexDirection: "column",
+              animation: "slideUp 0.3s ease-out",
+              position: "relative"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Botón cerrar flotante */}
+            <button
+              onClick={() => setChatbotOpen(false)}
+              style={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                background: "white",
+                border: "1px solid #e5e7eb",
+                borderRadius: "50%",
+                width: 32,
+                height: 32,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "1.2rem",
+                zIndex: 10,
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)"
+              }}
+            >
+              ✕
+            </button>
+            {/* iframe del Chatbot */}
+            <iframe
+              src={
+                process.env.NEXT_PUBLIC_WIDGET_URL ??
+                'https://eghealthsolutions.vercel.app/paciente/chatbot-widget'
+              }
+              style={{
+                flex: 1,
+                border: "none",
+                width: "100%",
+                borderRadius: "16px 0 0 16px"
+              }}
+              title="EG Health Chatbot"
+            />
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideUp {
+          from {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </>
   );
 }
