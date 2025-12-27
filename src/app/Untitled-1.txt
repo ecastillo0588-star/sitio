@@ -1,0 +1,2 @@
+cd "C:\Users\Usuario\Desktop\Sitio web\sitio-main\nuevo_sitio"
+npm run dev

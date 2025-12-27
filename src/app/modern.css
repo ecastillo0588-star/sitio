@@ -1,0 +1,111 @@
+/* modern.css - estilos profesionales y responsive para EG Health Solutions */
+
+:root {
+  --brand: #7656b0;
+  --brand-2: #a490d7;
+  --ink: #381e60;
+  --muted: #6b6480;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --line: #ece5fc;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+}
+
+.btn {
+  border-radius: 999px;
+  padding: .55rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg,var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff;
+  box-shadow:0 10px 30px rgba(118,86,176,0.12);
+}
+
+.btn-secondary {
+  background: #e7e2fa;
+  color: #5a3e9a;
+  border-color: #d5caf8;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border-color: #1ebe5d;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+  padding: 1.4rem 1.45rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 .5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 1rem .7rem;
+  }
+}
+
+/* Hero entrance */
+.hero-copy{ transform: translateY(8px); opacity:0; transition: transform .6s ease, opacity .6s ease; }
+.hero.is-loaded .hero-copy{ transform:none; opacity:1; }
+
+/* Highlight span */
+.highlight{
+  color:var(--brand);
+  font-weight:700;
+  background: linear-gradient(180deg, rgba(164,144,215,0.12) 0%, rgba(164,144,215,0.06) 100%);
+  padding:.06rem .2rem;
+  border-radius:6px;
+}
+
+/* Floating WhatsApp FAB animation */
+.whatsapp-fab{
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+  will-change: transform, box-shadow;
+}
+.whatsapp-fab:hover{
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+}
+.whatsapp-fab:active{
+  transform: translateY(-2px) scale(0.98);
+}
+
+.whatsapp-fab{ border: 2px solid rgba(255,255,255,0.12); }
+.whatsapp-fab:focus{ outline: none; box-shadow: 0 0 0 6px rgba(37,211,102,0.12); }
