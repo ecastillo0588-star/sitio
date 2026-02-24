@@ -7,9 +7,6 @@ on:
         description: 'Professional slug (folder name)'
         required: true
         default: 'gabriela-castillo'
-  push:
-    branches:
-      - main
 
 jobs:
   build-and-push:
