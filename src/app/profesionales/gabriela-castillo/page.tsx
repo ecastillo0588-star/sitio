@@ -163,6 +163,7 @@ export default function GabrielaCastilloPage() {
       <header className="nav">
         <div className="nav-inner">
           <div className="logo">
+            <Image src="/assets/img/logo-eg.png" alt="EG Health" width={34} height={34} className="brand-mini" />
             <div className="logo-mark">GC</div>
             <span className="logo-text">Dra. {profesionalNombre}</span>
           </div>
@@ -173,6 +174,7 @@ export default function GabrielaCastilloPage() {
             <a href="#recursos">Recursos</a>
             <a href="#novedades">Novedades</a>
           </nav>
+          <button className="nav-cta" onClick={handleChatOpen}>Reservar turno</button>
         </div>
       </header>
 
@@ -187,6 +189,19 @@ export default function GabrielaCastilloPage() {
                 Atención médica integral con más de 15 años de experiencia. Enfoque humano,
                 seguimiento cercano y tratamientos basados en evidencia.
               </p>
+
+              <div
+                className="hero-ticker"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                <span className="ticker-label">Novedad</span>
+                <div>
+                  <strong>{heroNovedades[activeTicker]?.titulo}</strong>
+                  <p>{heroNovedades[activeTicker]?.descripcion}</p>
+                </div>
+              </div>
+
               <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
                 <Badge
                   icon={
@@ -462,6 +477,12 @@ export default function GabrielaCastilloPage() {
           font-weight: 700;
         }
 
+        .brand-mini {
+          border-radius: 8px;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+          background: #fff;
+        }
+
         .logo-mark {
           width: 48px;
           height: 48px;
@@ -483,6 +504,23 @@ export default function GabrielaCastilloPage() {
           display: flex;
           gap: 24px;
           font-weight: 500;
+        }
+
+        .nav-cta {
+          border: 2px solid #5937a8;
+          background: white;
+          color: #5937a8;
+          border-radius: 999px;
+          padding: 10px 18px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all .2s ease;
+        }
+
+        .nav-cta:hover {
+          background: #5937a8;
+          color: white;
+          transform: translateY(-1px);
         }
 
         .menu a {
@@ -602,6 +640,47 @@ export default function GabrielaCastilloPage() {
           line-height: 1.6;
           margin-bottom: 40px;
           max-width: 600px;
+        }
+
+        .hero-ticker {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 12px;
+          align-items: start;
+          margin-bottom: 22px;
+          padding: 14px;
+          border-radius: 14px;
+          border: 1px solid rgba(89,55,168,0.16);
+          background: rgba(255,255,255,0.7);
+          box-shadow: 0 8px 24px rgba(89,55,168,0.08);
+        }
+
+        .ticker-label {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          background: #ede7ff;
+          color: #5937a8;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 5px 10px;
+          text-transform: uppercase;
+          letter-spacing: .04em;
+        }
+
+        .hero-ticker strong {
+          display: block;
+          font-size: 15px;
+          margin-bottom: 2px;
+          color: #2b2142;
+        }
+
+        .hero-ticker p {
+          margin: 0;
+          color: #57516b;
+          font-size: 14px;
+          line-height: 1.45;
         }
 
         .hero-actions {
@@ -1064,6 +1143,10 @@ export default function GabrielaCastilloPage() {
           }
 
           .menu {
+            display: none;
+          }
+
+          .nav-cta {
             display: none;
           }
 
