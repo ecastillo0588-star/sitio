@@ -1,0 +1,635 @@
+/* modern.css - estilos profesionales y responsive para EG Health Solutions */
+
+:root {
+  --brand: #7656b0;
+  --brand-2: #a490d7;
+  --ink: #381e60;
+  --muted: #6b6480;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --line: #ece5fc;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+}
+
+.btn {
+  border-radius: 999px;
+  padding: .55rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg,var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff;
+  box-shadow:0 10px 30px rgba(118,86,176,0.12);
+}
+
+.btn-secondary {
+  background: #e7e2fa;
+  color: #5a3e9a;
+  border-color: #d5caf8;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border-color: #1ebe5d;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+  padding: 1.4rem 1.45rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 .5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 1rem .7rem;
+  }
+}
+
+/* Hero entrance */
+.hero-copy{ transform: translateY(8px); opacity:0; transition: transform .6s ease, opacity .6s ease; }
+.hero.is-loaded .hero-copy{ transform:none; opacity:1; }
+
+/* Highlight span */
+.highlight{
+  color:var(--brand);
+  font-weight:700;
+  background: linear-gradient(180deg, rgba(164,144,215,0.12) 0%, rgba(164,144,215,0.06) 100%);
+  padding:.06rem .2rem;
+  border-radius:6px;
+}
+
+/* Floating WhatsApp FAB animation */
+.whatsapp-fab{
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+  will-change: transform, box-shadow;
+}
+.whatsapp-fab:hover{
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+}
+.whatsapp-fab:active{
+  transform: translateY(-2px) scale(0.98);
+}
+
+.whatsapp-fab{ border: 2px solid rgba(255,255,255,0.12); }
+.whatsapp-fab:focus{ outline: none; box-shadow: 0 0 0 6px rgba(37,211,102,0.12); }
+
+.siteContainer {
+  width: min(1220px, 92vw);
+  margin-inline: auto;
+}
+
+.siteHeader {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, #ffffff 82%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.siteHeaderInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.1rem;
+  padding: .8rem 0;
+}
+
+.brandWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+}
+
+.brandLogo {
+  border-radius: 12px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brandText strong {
+  font-size: .98rem;
+}
+
+.brandText small {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.siteNav {
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+.siteNav a {
+  color: color-mix(in srgb, var(--ink) 78%, #000 22%);
+}
+
+.siteNav a:hover {
+  color: var(--brand);
+}
+
+.headerAction {
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+  background: #ece7ff;
+  color: #4a3285;
+  border-radius: 999px;
+  padding: .55rem 1rem;
+  font-weight: 700;
+  font-size: .86rem;
+}
+
+.heroModern {
+  position: relative;
+  overflow: hidden;
+  padding: 5.2rem 0 3.8rem;
+  background:
+    radial-gradient(circle at 10% 16%, #e5dcff 0, transparent 35%),
+    radial-gradient(circle at 86% 22%, #d6ebff 0, transparent 32%),
+    linear-gradient(180deg, #f8f6ff 0%, #f7f9fb 70%);
+}
+
+.heroGlow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.heroGlowOne {
+  width: 260px;
+  height: 260px;
+  background: color-mix(in srgb, var(--brand-2) 48%, transparent);
+  top: 10%;
+  right: -70px;
+}
+
+.heroGlowTwo {
+  width: 220px;
+  height: 220px;
+  background: #87d6ff66;
+  bottom: -50px;
+  left: -40px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  font-weight: 800;
+  padding: .42rem .82rem;
+  border-radius: 999px;
+  color: #4d3c82;
+  border: 1px solid #ddd3ff;
+  background: #efe9ff;
+  margin-bottom: 1rem;
+}
+
+.heroCopy h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  line-height: .97;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  max-width: 15ch;
+}
+
+.heroCopy h1 span {
+  background: linear-gradient(120deg, #5a37aa 0%, #2f6bcf 55%, #27b6c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroLead {
+  font-size: clamp(1rem, 1.3vw, 1.14rem);
+  line-height: 1.55;
+  max-width: 62ch;
+  color: color-mix(in srgb, var(--ink) 65%, #1f2937 35%);
+}
+
+.heroActions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.btnPrimaryHero,
+.btnGhostHero {
+  border-radius: 999px;
+  padding: .8rem 1.25rem;
+  font-weight: 700;
+  font-size: .92rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btnPrimaryHero {
+  color: white;
+  background: linear-gradient(140deg, #5533a4 0%, #2b66d6 100%);
+  box-shadow: 0 14px 30px #5b37aa33;
+}
+
+.btnGhostHero {
+  color: #4f3f81;
+  border: 1px solid #d8cff7;
+  background: #ffffffb8;
+}
+
+.btnPrimaryHero:hover,
+.btnGhostHero:hover {
+  transform: translateY(-2px);
+}
+
+.heroKpis {
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55rem;
+}
+
+.heroKpis article {
+  border-radius: 14px;
+  background: #ffffffc9;
+  border: 1px solid #e7e1fb;
+  padding: .8rem .82rem;
+}
+
+.heroKpis strong {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.heroKpis span {
+  display: block;
+  font-size: .76rem;
+  color: var(--muted);
+  margin-top: .22rem;
+}
+
+.heroVisual {
+  position: relative;
+  min-height: 520px;
+}
+
+.visualCard {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid #ddd4fb;
+  box-shadow: 0 20px 45px rgba(18, 25, 40, .15);
+  background: white;
+}
+
+.visualCard img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.visualMain {
+  width: min(500px, 95%);
+  top: 0;
+  right: 0;
+  animation: floatY 5s ease-in-out infinite;
+}
+
+.visualSecondary {
+  width: min(360px, 72%);
+  bottom: 10px;
+  left: 10px;
+  animation: floatY 5.5s ease-in-out infinite reverse;
+}
+
+.floatingChip {
+  position: absolute;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .45rem .75rem;
+  color: #3e2d72;
+  border: 1px solid #d7cff4;
+  background: #f6f2ff;
+  box-shadow: 0 10px 30px rgba(25, 30, 45, .12);
+}
+
+.chipOne {
+  top: 8%;
+  left: -24px;
+}
+
+.chipTwo {
+  right: 10px;
+  bottom: -6px;
+}
+
+@keyframes floatY {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.impactStrip {
+  padding: 3.2rem 0;
+  background: #12161f;
+  color: #ebf0ff;
+}
+
+.impactGrid {
+  display: grid;
+  grid-template-columns: 1fr .95fr;
+  gap: 1.6rem;
+  align-items: center;
+}
+
+.impactGrid h2 {
+  color: white;
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.impactGrid h2 span {
+  color: #95c6ff;
+}
+
+.impactGrid p {
+  color: #c5d2f4;
+  font-size: 1.04rem;
+}
+
+.paymentsSection {
+  padding: 4.3rem 0;
+  background: linear-gradient(180deg, #f5f9ff 0%, #f8f6ff 100%);
+}
+
+.paymentsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  letter-spacing: .08em;
+  font-size: .74rem;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: .38rem .72rem;
+  color: #35507b;
+  border: 1px solid #c7defe;
+  background: #e7f1ff;
+}
+
+.paymentsCopy h3,
+.sectionHead h3 {
+  font-size: clamp(1.75rem, 3.8vw, 3.1rem);
+  line-height: .98;
+  letter-spacing: -0.02em;
+  margin: .8rem 0 .9rem;
+}
+
+.paymentsCopy h3 span {
+  color: #2f66cf;
+}
+
+.paymentsCopy p {
+  color: color-mix(in srgb, var(--ink) 62%, #1f2937 38%);
+  line-height: 1.55;
+}
+
+.paymentsCopy ul {
+  margin-top: 1rem;
+  list-style: none;
+  display: grid;
+  gap: .48rem;
+}
+
+.paymentsCopy li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-weight: 600;
+}
+
+.paymentsCopy li::before {
+  content: "";
+  width: .45rem;
+  height: .45rem;
+  border-radius: 999px;
+  position: absolute;
+  left: 0;
+  top: .47rem;
+  background: linear-gradient(180deg, var(--brand), #2f66cf);
+}
+
+.paymentsCards {
+  display: grid;
+  gap: .7rem;
+}
+
+.paymentsCards article {
+  border-radius: 18px;
+  border: 1px solid #dbe3fb;
+  background: #ffffffd4;
+  backdrop-filter: blur(8px);
+  padding: 1rem 1.05rem;
+  box-shadow: 0 12px 25px rgba(25, 36, 56, .07);
+}
+
+.paymentsCards strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: .22rem;
+}
+
+.paymentsCards p {
+  color: var(--muted);
+}
+
+.capabilitiesSection {
+  padding: 4rem 0 4.4rem;
+  background: #111522;
+}
+
+.sectionHead {
+  margin-bottom: 1rem;
+}
+
+.sectionHead .sectionTag {
+  border-color: #304b72;
+  background: #1a2b45;
+  color: #b8d4ff;
+}
+
+.sectionHead h3 {
+  color: white;
+  max-width: 20ch;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+}
+
+.pillarCard {
+  border-radius: 16px;
+  border: 1px solid #2b3652;
+  background: linear-gradient(180deg, #1a2235 0%, #161e31 100%);
+  padding: 1rem;
+}
+
+.pillarDot {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 999px;
+  margin-bottom: .7rem;
+  background: linear-gradient(180deg, #6ba8ff 0%, #8f74ff 100%);
+  box-shadow: 0 0 18px #7f8dff99;
+}
+
+.pillarCard h4 {
+  color: #f5f8ff;
+  font-size: 1.03rem;
+  margin-bottom: .36rem;
+}
+
+.pillarCard p {
+  color: #b5c3e0;
+}
+
+.ctaBand {
+  background: radial-gradient(circle at 18% 0, #e5ddff 0%, #f2f6ff 46%, #f6f8ff 100%);
+  padding: 3.2rem 0;
+}
+
+.ctaBandInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ctaBandInner h3 {
+  font-size: clamp(1.35rem, 2.8vw, 2.4rem);
+  line-height: 1.04;
+  max-width: 24ch;
+}
+
+.ctaBandInner a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .85rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(145deg, #5834aa 0%, #2f66cf 100%);
+  box-shadow: 0 15px 35px rgba(41, 64, 118, .25);
+}
+
+.siteFooter {
+  padding: 1.2rem 0 1.35rem;
+  text-align: center;
+  color: #8a96b4;
+  font-size: .88rem;
+  background: #0b0f18;
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .impactGrid,
+  .paymentsGrid,
+  .ctaBandInner {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .heroVisual {
+    min-height: 460px;
+  }
+
+  .visualMain {
+    left: 0;
+    right: auto;
+  }
+
+  .visualSecondary {
+    left: auto;
+    right: 0;
+    bottom: 0;
+  }
+
+  .floatingChip {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .siteNav {
+    display: none;
+  }
+
+  .heroKpis,
+  .capabilitiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroModern {
+    padding-top: 4.3rem;
+  }
+
+  .heroVisual {
+    min-height: 380px;
+  }
+}

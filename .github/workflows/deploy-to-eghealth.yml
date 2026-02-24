@@ -1,0 +1,60 @@
+name: Deploy profesionales to EG-HEALTH
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Professional slug (folder name)'
+        required: true
+        default: 'gabriela-castillo'
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_REPO: ecastillo0588-star/EG-HEALTH
+    steps:
+      - name: Checkout sitio
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: |
+          npm i -g pnpm@8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Build and export (static)
+        run: |
+          pnpm build || npx next build
+          # Use next export if available; export output goes to `out/` by default
+          npx next export -o out || echo 'next export failed or not configured; ensure export output exists in out/'
+
+      - name: Prepare target repo
+        env:
+          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
+          SLUG: ${{ github.event.inputs.slug || 'gabriela-castillo' }}
+        run: |
+          set -e
+          git clone https://x-access-token:${PUSH_TOKEN}@github.com/${TARGET_REPO}.git target-repo
+          mkdir -p target-repo/public/profesionales/${SLUG}
+          rm -rf target-repo/public/profesionales/${SLUG}/* || true
+          cp -R out/* target-repo/public/profesionales/${SLUG}/
+          cd target-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/profesionales/${SLUG}
+          if git status --porcelain | grep .; then
+            git commit -m "chore(profesionales): deploy ${SLUG} from sitio@${{ github.sha }}"
+            git push origin main
+          else
+            echo "No changes to deploy"
+          fi
